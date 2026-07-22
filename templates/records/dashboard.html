@@ -1,201 +1,535 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-TW">
-  <head>
-    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
 
-    <title>JunOS Dashboard</title>
+<meta charset="UTF-8">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-  </head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <body>
-    <header>
-      <h1>🖥️ JunOS Dashboard</h1>
+<title>Daily Record | JunOS</title>
 
-      <p>Welcome back, Jun.</p>
-    </header>
+<link rel="stylesheet" href="/static/style.css">
 
-    <div class="container">
-      <aside>
-        <h2>📚 Navigation</h2>
+</head>
 
-        <ul>
-          <li><a href="{{ url_for('index') }}">🏠 Home</a></li>
 
-          <li><a href="../pages/manual.html">📖 Manual</a></li>
-          <li><a href="../pages/brain.html">🧠 Brain</a></li>
-          <li><a href="../pages/psychology.html">🧠 Psychology</a></li>
-          <li><a href="../pages/study.html">📚 Study</a></li>
-          <li><a href="../pages/coding.html">💻 Coding</a></li>
-          <li><a href="../pages/training.html">🏃 Training</a></li>
-          <li><a href="../pages/sleep.html">😴 Sleep</a></li>
-          <li><a href="../pages/emotion.html">❤️ Emotion</a></li>
-        </ul>
-      </aside>
+<body>
 
-      <main>
-        <section class="hero">
-          <h2>Today's Mission</h2>
 
-          <p>今天只需要完成今天。</p>
-        </section>
+<header>
 
-        <section>
-          <h2>📊 今日狀態</h2>
+<h1>📊 Daily Record System</h1>
 
-          <div class="grid">
-            <div class="card">
-              <h3>😴 Sleep</h3>
+<p>
+JunOS 個人狀態追蹤中心
+</p>
 
-              <h1 id="sleep-hour">7.5 h</h1>
-            </div>
+</header>
 
-            <div class="card">
-              <h3>⚡ Energy</h3>
 
-              <h1 id="energy">8 / 10</h1>
-            </div>
 
-            <div class="card">
-              <h3>🎯 Focus</h3>
 
-              <h1 id="focus">7 / 10</h1>
-            </div>
+<div class="container">
 
-            <div class="card">
-              <h3>😵 Stress</h3>
 
-              <h1 id="stress">4 / 10</h1>
-            </div>
-          </div>
-        </section>
 
-        <section>
-          <h2>✅ Today's Tasks</h2>
+<aside>
 
-          <table>
-            <tr>
-              <th>完成</th>
-              <th>任務</th>
-            </tr>
+<h2>📚 System</h2>
 
-            <tr>
-              <td><input type="checkbox" /></td>
-              <td>保險刷題</td>
-            </tr>
+<ul>
 
-            <tr>
-              <td><input type="checkbox" /></td>
-              <td>Coding</td>
-            </tr>
+<li>
+<a href="/">🏠 Dashboard</a>
+</li>
 
-            <tr>
-              <td><input type="checkbox" /></td>
-              <td>撐竿跳訓練</td>
-            </tr>
 
-            <tr>
-              <td><input type="checkbox" /></td>
-              <td>閱讀30分鐘</td>
-            </tr>
-          </table>
-        </section>
+<li>
+<a href="/pages/manual">
+📖 Manual
+</a>
+</li>
 
-        <section>
-          <h2>🚀 Quick Launch</h2>
 
-          <div class="grid">
-            <a class="card" href="../pages/startup.html">
-              <h3>🚀 Startup</h3>
+<li>
+<a href="/pages/brain">
+🧠 Brain
+</a>
+</li>
 
-              <p>不知道怎麼開始</p>
-            </a>
 
-            <a class="card" href="../pages/focus.html">
-              <h3>🎯 Focus</h3>
+<li>
+<a href="/pages/emotion">
+❤️ Emotion
+</a>
+</li>
 
-              <p>無法專注</p>
-            </a>
 
-            <a class="card" href="../pages/stress.html">
-              <h3>😵 Stress</h3>
+<li>
+<a href="/pages/focus">
+🎯 Focus
+</a>
+</li>
 
-              <p>壓力太大</p>
-            </a>
 
-            <a class="card" href="../pages/emergency.html">
-              <h3>🚨 Emergency</h3>
+</ul>
 
-              <p>立即穩定系統</p>
-            </a>
-          </div>
-        </section>
+</aside>
 
-        <section>
-          <h2>📈 Progress</h2>
 
-          <table>
-            <tr>
-              <th>項目</th>
-              <th>進度</th>
-            </tr>
 
-            <tr>
-              <td>Insurance</td>
-              <td>65%</td>
-            </tr>
 
-            <tr>
-              <td>C Programming</td>
-              <td>82%</td>
-            </tr>
 
-            <tr>
-              <td>Machine Learning</td>
-              <td>25%</td>
-            </tr>
 
-            <tr>
-              <td>Pole Vault</td>
-              <td>76%</td>
-            </tr>
-          </table>
-        </section>
+<main>
 
-        <section>
-          <h2>📝 最近紀錄</h2>
 
-          <div class="card">
-            <ul>
-              <li>✔ 今天完成 Coding 2 小時</li>
 
-              <li>✔ 保險刷題 120 題</li>
+<section class="hero">
 
-              <li>✔ 撐竿跳訓練完成</li>
 
-              <li>✔ 睡眠 7.5 小時</li>
-            </ul>
-          </div>
-        </section>
+<h2>
 
-        <section>
-          <h2>💡 Today Quote</h2>
+每日狀態紀錄
 
-          <blockquote>
-            Don't wait until you feel motivated.
+</h2>
 
-            <br /><br />
 
-            Build a system that works even when motivation disappears.
-          </blockquote>
-        </section>
-      </main>
-    </div>
+<p>
 
-    <footer>JunOS v1.0</footer>
+了解自己的系統狀態，而不是只靠感覺。
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
-  </body>
+</p>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<section>
+
+
+<h2>
+📝 今日輸入
+</h2>
+
+
+<form action="/records/add" method="POST">
+
+
+<div class="card">
+
+
+<label>
+😴 睡眠時間 (小時)
+</label>
+
+
+<br>
+
+
+<input
+
+type="number"
+
+step="0.1"
+
+name="sleep"
+
+placeholder="例如 7.5"
+
+required
+
+>
+
+
+
+<br><br>
+
+
+
+
+<label>
+🔋 能量評估 (0-100)
+</label>
+
+
+<br>
+
+
+<input
+
+type="number"
+
+name="energy"
+
+min="0"
+
+max="100"
+
+placeholder="今天有多少電量"
+
+required
+
+>
+
+
+
+<br><br>
+
+
+
+
+
+<label>
+🎯 一日專注度 (0-100)
+</label>
+
+
+<br>
+
+
+<input
+
+type="number"
+
+name="focus"
+
+min="0"
+
+max="100"
+
+placeholder="今天專注狀態"
+
+required
+
+>
+
+
+
+<br><br>
+
+
+
+
+
+<label>
+😵 壓力程度 (0-100)
+</label>
+
+
+<br>
+
+
+<input
+
+type="number"
+
+name="stress"
+
+min="0"
+
+max="100"
+
+placeholder="壓力大小"
+
+required
+
+>
+
+
+
+<br><br>
+
+
+
+
+
+<label>
+🧠 內耗事項
+</label>
+
+
+<br>
+
+
+<textarea
+
+name="thoughts"
+
+rows="5"
+
+placeholder="今天讓你消耗最多的事情..."
+
+></textarea>
+
+
+
+<br><br>
+
+
+<button type="submit">
+
+保存今日紀錄
+
+</button>
+
+
+
+</div>
+
+
+</form>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<section>
+
+
+<h2>
+📈 歷史回顧
+</h2>
+
+
+
+<table>
+
+
+<tr>
+
+<th>
+日期
+</th>
+
+
+<th>
+睡眠
+</th>
+
+
+<th>
+能量
+</th>
+
+
+<th>
+專注
+</th>
+
+
+<th>
+壓力
+</th>
+
+
+<th>
+內耗
+</th>
+
+
+</tr>
+
+
+
+
+
+{% for record in records %}
+
+
+<tr>
+
+
+<td>
+{{ record.date }}
+</td>
+
+
+<td>
+{{ record.sleep }}
+小時
+</td>
+
+
+<td>
+{{ record.energy }}
+</td>
+
+
+<td>
+{{ record.focus }}
+</td>
+
+
+<td>
+{{ record.stress }}
+</td>
+
+
+<td>
+{{ record.thoughts }}
+</td>
+
+
+</tr>
+
+
+
+{% else %}
+
+
+<tr>
+
+<td colspan="6">
+
+目前沒有紀錄
+
+</td>
+
+</tr>
+
+
+{% endfor %}
+
+
+
+</table>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<section>
+
+
+<h2>
+🧠 JunOS Analysis Rule
+</h2>
+
+
+
+<div class="grid">
+
+
+<div class="card">
+
+
+<h3>
+低能量
+</h3>
+
+
+<p>
+
+睡眠不足或壓力過高時，
+
+降低任務難度。
+
+</p>
+
+
+</div>
+
+
+
+
+<div class="card">
+
+
+<h3>
+高輸出
+</h3>
+
+
+<p>
+
+能量充足時，
+
+安排 Coding、研究、訓練。
+
+</p>
+
+
+</div>
+
+
+
+
+<div class="card">
+
+
+<h3>
+長期觀察
+</h3>
+
+
+<p>
+
+資料比感覺更接近真實狀態。
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+</main>
+
+
+</div>
+
+
+
+
+
+<footer>
+
+JunOS v1.0
+
+</footer>
+
+
+
+<script src="/static/script.js"></script>
+
+
+</body>
+
+
 </html>
