@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ADHD System | JunOS</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body>
+    <header>
+      <h1>💊 ADHD System</h1>
+      <p>執行功能管理中心</p>
+    </header>
+
+    <div class="container">
+      <aside>
+        <h2>📚 導覽</h2>
+
+        <ul>
+          <li><a href="/">🏠 首頁</a></li>
+          <li><a href="/pages/brain">🧠 大腦設定</a></li>
+          <li><a href="/pages/startup">🚀 啟動困難</a></li>
+          <li><a href="/pages/focus">🎯 專注系統</a></li>
+          <li><a href="/pages/stress">😵 壓力管理</a></li>
+          <li><a href="/pages/sleep">😴 睡眠</a></li>
+        </ul>
+      </aside>
+
+      <main>
+        <section class="hero">
+          <h2>不是缺少能力，是需要不同操作方式。</h2>
+          <p>把大腦當成需要正確介面的系統。</p>
+        </section>
+
+        <section>
+          <h2>🧠 ADHD 運作模型</h2>
+
+          <table>
+            <tr>
+              <th>功能</th>
+              <th>常見狀態</th>
+              <th>改善方向</th>
+            </tr>
+
+            <tr>
+              <td>啟動</td>
+              <td>知道要做，但開始不了</td>
+              <td>降低開始成本</td>
+            </tr>
+
+            <tr>
+              <td>注意力</td>
+              <td>容易被新刺激吸走</td>
+              <td>控制環境</td>
+            </tr>
+
+            <tr>
+              <td>時間感</td>
+              <td>低估或高估時間</td>
+              <td>使用計時工具</td>
+            </tr>
+
+            <tr>
+              <td>工作記憶</td>
+              <td>腦中同時太多事情</td>
+              <td>外部化記錄</td>
+            </tr>
+
+            <tr>
+              <td>獎勵系統</td>
+              <td>短期刺激吸引力高</td>
+              <td>建立立即回饋</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>🚀 啟動困難模式</h2>
+
+          <div class="grid">
+            <div class="card">
+              <h3>錯誤方式</h3>
+              <p>「我要認真一天。」</p>
+            </div>
+
+            <div class="card">
+              <h3>正確方式</h3>
+              <p>「我只做五分鐘。」</p>
+            </div>
+
+            <div class="card">
+              <h3>降低阻力</h3>
+              <p>
+                提前準備：
+                <br />
+                文件開好
+                <br />
+                工具放好
+                <br />
+                環境整理好
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>🎯 專注策略</h2>
+
+          <table>
+            <tr>
+              <th>問題</th>
+              <th>方法</th>
+            </tr>
+
+            <tr>
+              <td>手機吸引力太高</td>
+              <td>增加拿手機成本</td>
+            </tr>
+
+            <tr>
+              <td>容易切換</td>
+              <td>一次只開一個任務</td>
+            </tr>
+
+            <tr>
+              <td>想太多</td>
+              <td>Brain Dump</td>
+            </tr>
+
+            <tr>
+              <td>工作太大</td>
+              <td>拆成下一步</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>⚡ ADHD 日常 SOP</h2>
+
+          <div class="grid">
+            <div class="card">
+              <h3>早上</h3>
+              <p>
+                不要決定太多事情。
+                <br />
+                直接執行固定流程。
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>下午</h3>
+              <p>利用運動後狀態完成重要工作。</p>
+            </div>
+
+            <div class="card">
+              <h3>晚上</h3>
+              <p>
+                降低刺激。
+                <br />
+                不要開新坑。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>💻 Coding 模式</h2>
+
+          <div class="card">
+            <h3>Vibe Coding 使用規則</h3>
+
+            <p>
+              AI 負責：
+              <br />
+              快速產生
+              <br />
+              提供方向
+              <br />
+              處理重複工作
+              <br /><br />
+
+              自己負責：
+              <br />
+              理解架構
+              <br />
+              檢查品質
+              <br />
+              建立模型
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2>🧑‍⚕️ 心理工具</h2>
+
+          <div class="grid">
+            <div class="card">
+              <h3>CBT</h3>
+              <p>
+                不要把：
+                <br />
+                「今天效率差」
+                <br /><br />
+                變成：
+                <br />
+                「我是失敗的人」
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Behavioral Activation</h3>
+              <p>
+                不要等待動機。
+                <br />
+                行動會產生動機。
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>環境設計</h3>
+              <p>
+                讓正確行為容易。
+                <br />
+                讓錯誤行為困難。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>🚨 失控日恢復模式</h2>
+
+          <blockquote>
+            今天狀態不好時：
+            <br /><br />
+            1. 不重新規劃人生
+            <br />
+            2. 不責備自己
+            <br />
+            3. 完成最低版本
+            <br />
+            4. 睡好
+            <br />
+            5. 明天重新開始
+          </blockquote>
+        </section>
+
+        <section>
+          <h2>📌 JunOS Reminder</h2>
+
+          <blockquote>
+            你的大腦不是壞掉。
+            <br />
+            只是需要不同的操作系統。
+            <br /><br />
+            重點不是控制大腦。
+            <br />
+            而是設計環境。
+          </blockquote>
+        </section>
+      </main>
+    </div>
+
+    <footer>JunOS v1.0</footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

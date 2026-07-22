@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Psychology System | JunOS</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+
+  <body>
+    <header>
+      <h1>🧠 Psychology System</h1>
+
+      <p>心理模型與自我理解中心</p>
+    </header>
+
+    <div class="container">
+      <aside>
+        <h2>📚 導覽</h2>
+
+        <ul>
+          <li><a href="{{ url_for('index') }}">🏠 首頁</a></li>
+
+          <li><a href="brain.html">🧠 大腦</a></li>
+
+          <li><a href="emotion.html">❤️ 情緒</a></li>
+
+          <li><a href="relationship.html">🤝 關係</a></li>
+
+          <li><a href="stress.html">😵 壓力</a></li>
+        </ul>
+      </aside>
+
+      <main>
+        <section class="hero">
+          <h2>理解自己，才能重新設計自己。</h2>
+
+          <p>心理學不是貼標籤，而是建立操作手冊。</p>
+        </section>
+
+        <section>
+          <h2>🧩 心理模型總覽</h2>
+
+          <table>
+            <tr>
+              <th>模型</th>
+
+              <th>核心問題</th>
+
+              <th>應用</th>
+            </tr>
+
+            <tr>
+              <td>阿德勒心理學</td>
+
+              <td>我要如何活出自己的方向？</td>
+
+              <td>自我價值、關係、責任</td>
+            </tr>
+
+            <tr>
+              <td>CBT</td>
+
+              <td>我的想法是否影響我的情緒？</td>
+
+              <td>修正負面思考</td>
+            </tr>
+
+            <tr>
+              <td>ACT</td>
+
+              <td>我能否帶著不舒服前進？</td>
+
+              <td>價值導向行動</td>
+            </tr>
+
+            <tr>
+              <td>DBT</td>
+
+              <td>如何調節強烈情緒？</td>
+
+              <td>情緒管理</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>🏛 阿德勒心理學</h2>
+
+          <div class="grid">
+            <div class="card">
+              <h3>課題分離</h3>
+
+              <p>
+                區分：
+
+                <br /><br />
+
+                我的責任
+
+                <br />
+
+                別人的責任
+
+                <br /><br />
+
+                不要控制無法控制的事。
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>目的論</h3>
+
+              <p>
+                不要只問： 「過去造成什麼？」
+
+                <br /><br />
+
+                也問： 「現在想達成什麼？」
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>共同體感覺</h3>
+
+              <p>找到自己與他人的連結。 同時保有自己。</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>🔍 CBT 認知模型</h2>
+
+          <table>
+            <tr>
+              <th>階段</th>
+
+              <th>例子</th>
+            </tr>
+
+            <tr>
+              <td>事件</td>
+
+              <td>程式寫錯</td>
+            </tr>
+
+            <tr>
+              <td>想法</td>
+
+              <td>「我很爛」</td>
+            </tr>
+
+            <tr>
+              <td>情緒</td>
+
+              <td>焦慮、挫折</td>
+            </tr>
+
+            <tr>
+              <td>行動</td>
+
+              <td>逃避</td>
+            </tr>
+          </table>
+
+          <p>修改的地方通常不是事件， 而是對事件的解讀。</p>
+        </section>
+
+        <section>
+          <h2>🌊 ACT 接納承諾</h2>
+
+          <div class="grid">
+            <div class="card">
+              <h3>不是消除痛苦</h3>
+
+              <p>人生一定會有不舒服。 重點是： 不要讓痛苦決定方向。</p>
+            </div>
+
+            <div class="card">
+              <h3>心理彈性</h3>
+
+              <p>可以感受到： 焦慮、害怕、失望。 仍然做重要事情。</p>
+            </div>
+
+            <div class="card">
+              <h3>價值方向</h3>
+
+              <p>問： 「我想成為什麼樣的人？」</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>🔥 成長型思維</h2>
+
+          <table>
+            <tr>
+              <th>固定思維</th>
+
+              <th>成長思維</th>
+            </tr>
+
+            <tr>
+              <td>我不會</td>
+
+              <td>我現在還不會</td>
+            </tr>
+
+            <tr>
+              <td>失敗代表能力不足</td>
+
+              <td>失敗提供資料</td>
+            </tr>
+
+            <tr>
+              <td>別人比我強</td>
+
+              <td>研究別人的方法</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>🧠 自我分析流程</h2>
+
+          <div class="grid">
+            <div class="card">
+              <h3>1. 發生什麼？</h3>
+
+              <p>描述事實。 不要加入評價。</p>
+            </div>
+
+            <div class="card">
+              <h3>2. 我怎麼解讀？</h3>
+
+              <p>找到自己的想法。</p>
+            </div>
+
+            <div class="card">
+              <h3>3. 我要什麼？</h3>
+
+              <p>找到真正需求。</p>
+            </div>
+
+            <div class="card">
+              <h3>4. 下一步？</h3>
+
+              <p>選擇符合價值的行動。</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>⚠️ 心理陷阱</h2>
+
+          <ul>
+            <li>把一次失敗變成人格判決。</li>
+
+            <li>把情緒當成事實。</li>
+
+            <li>想控制所有外部因素。</li>
+
+            <li>過度分析而停止行動。</li>
+
+            <li>追求完美才開始。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>📌 JunOS Psychology Rule</h2>
+
+          <blockquote>
+            了解自己， 不是為了限制自己。
+
+            <br /><br />
+
+            而是找到最適合自己的使用方式。
+          </blockquote>
+        </section>
+      </main>
+    </div>
+
+    <footer>JunOS v1.0</footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

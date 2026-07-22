@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>JunOS Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+
+  <body>
+    <header>
+      <h1>🖥️ JunOS Dashboard</h1>
+
+      <p>Welcome back, Jun.</p>
+    </header>
+
+    <div class="container">
+      <aside>
+        <h2>📚 Navigation</h2>
+
+        <ul>
+          <li><a href="{{ url_for('index') }}">🏠 Home</a></li>
+
+          <li><a href="../pages/manual.html">📖 Manual</a></li>
+          <li><a href="../pages/brain.html">🧠 Brain</a></li>
+          <li><a href="../pages/psychology.html">🧠 Psychology</a></li>
+          <li><a href="../pages/study.html">📚 Study</a></li>
+          <li><a href="../pages/coding.html">💻 Coding</a></li>
+          <li><a href="../pages/training.html">🏃 Training</a></li>
+          <li><a href="../pages/sleep.html">😴 Sleep</a></li>
+          <li><a href="../pages/emotion.html">❤️ Emotion</a></li>
+        </ul>
+      </aside>
+
+      <main>
+        <section class="hero">
+          <h2>Today's Mission</h2>
+
+          <p>今天只需要完成今天。</p>
+        </section>
+
+        <section>
+          <h2>📊 今日狀態</h2>
+
+          <div class="grid">
+            <div class="card">
+              <h3>😴 Sleep</h3>
+
+              <h1 id="sleep-hour">7.5 h</h1>
+            </div>
+
+            <div class="card">
+              <h3>⚡ Energy</h3>
+
+              <h1 id="energy">8 / 10</h1>
+            </div>
+
+            <div class="card">
+              <h3>🎯 Focus</h3>
+
+              <h1 id="focus">7 / 10</h1>
+            </div>
+
+            <div class="card">
+              <h3>😵 Stress</h3>
+
+              <h1 id="stress">4 / 10</h1>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>✅ Today's Tasks</h2>
+
+          <table>
+            <tr>
+              <th>完成</th>
+              <th>任務</th>
+            </tr>
+
+            <tr>
+              <td><input type="checkbox" /></td>
+              <td>保險刷題</td>
+            </tr>
+
+            <tr>
+              <td><input type="checkbox" /></td>
+              <td>Coding</td>
+            </tr>
+
+            <tr>
+              <td><input type="checkbox" /></td>
+              <td>撐竿跳訓練</td>
+            </tr>
+
+            <tr>
+              <td><input type="checkbox" /></td>
+              <td>閱讀30分鐘</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>🚀 Quick Launch</h2>
+
+          <div class="grid">
+            <a class="card" href="../pages/startup.html">
+              <h3>🚀 Startup</h3>
+
+              <p>不知道怎麼開始</p>
+            </a>
+
+            <a class="card" href="../pages/focus.html">
+              <h3>🎯 Focus</h3>
+
+              <p>無法專注</p>
+            </a>
+
+            <a class="card" href="../pages/stress.html">
+              <h3>😵 Stress</h3>
+
+              <p>壓力太大</p>
+            </a>
+
+            <a class="card" href="../pages/emergency.html">
+              <h3>🚨 Emergency</h3>
+
+              <p>立即穩定系統</p>
+            </a>
+          </div>
+        </section>
+
+        <section>
+          <h2>📈 Progress</h2>
+
+          <table>
+            <tr>
+              <th>項目</th>
+              <th>進度</th>
+            </tr>
+
+            <tr>
+              <td>Insurance</td>
+              <td>65%</td>
+            </tr>
+
+            <tr>
+              <td>C Programming</td>
+              <td>82%</td>
+            </tr>
+
+            <tr>
+              <td>Machine Learning</td>
+              <td>25%</td>
+            </tr>
+
+            <tr>
+              <td>Pole Vault</td>
+              <td>76%</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>📝 最近紀錄</h2>
+
+          <div class="card">
+            <ul>
+              <li>✔ 今天完成 Coding 2 小時</li>
+
+              <li>✔ 保險刷題 120 題</li>
+
+              <li>✔ 撐竿跳訓練完成</li>
+
+              <li>✔ 睡眠 7.5 小時</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h2>💡 Today Quote</h2>
+
+          <blockquote>
+            Don't wait until you feel motivated.
+
+            <br /><br />
+
+            Build a system that works even when motivation disappears.
+          </blockquote>
+        </section>
+      </main>
+    </div>
+
+    <footer>JunOS v1.0</footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

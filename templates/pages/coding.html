@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Coding System | JunOS</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body>
+    <header>
+      <h1>💻 Coding System</h1>
+      <p>程式開發與工程思維中心</p>
+    </header>
+
+    <div class="container">
+      <aside>
+        <h2>📚 導覽</h2>
+
+        <ul>
+          <li><a href="/">🏠 首頁</a></li>
+          <li><a href="/pages/study">📚 學習</a></li>
+          <li><a href="/pages/focus">🎯 專注</a></li>
+          <li><a href="/pages/adhd">💊 ADHD</a></li>
+          <li><a href="/pages/brain">🧠 大腦</a></li>
+        </ul>
+      </aside>
+
+      <main>
+        <section class="hero">
+          <h2>寫程式不是打字。</h2>
+
+          <p>是把問題轉換成可執行的模型。</p>
+        </section>
+
+        <section>
+          <h2>🧠 Developer Mindset</h2>
+
+          <table>
+            <tr>
+              <th>錯誤思維</th>
+              <th>工程思維</th>
+            </tr>
+
+            <tr>
+              <td>我要一次寫完</td>
+              <td>先做 MVP</td>
+            </tr>
+
+            <tr>
+              <td>Bug 很煩</td>
+              <td>Bug 是系統回饋</td>
+            </tr>
+
+            <tr>
+              <td>程式越多越厲害</td>
+              <td>簡單可維護才厲害</td>
+            </tr>
+
+            <tr>
+              <td>AI 寫完就好</td>
+              <td>理解架構再使用</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>🚀 Coding 開始流程</h2>
+
+          <div class="grid">
+            <div class="card">
+              <h3>STEP 1</h3>
+              <p>
+                定義問題。
+                <br /><br />
+                不要急著寫 Code。
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>STEP 2</h3>
+              <p>拆 Input / Process / Output。</p>
+            </div>
+
+            <div class="card">
+              <h3>STEP 3</h3>
+              <p>
+                先寫最小版本。
+                <br />
+                能跑最重要。
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>STEP 4</h3>
+              <p>
+                測試。
+                <br />
+                重構。
+                <br />
+                優化。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>🤖 Vibe Coding 使用規則</h2>
+
+          <div class="grid">
+            <div class="card">
+              <h3>AI 可以做</h3>
+
+              <p>
+                ✔ Boilerplate
+                <br />
+                ✔ 重複程式
+                <br />
+                ✔ Debug 提示
+                <br />
+                ✔ 架構討論
+                <br />
+                ✔ 文件整理
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>自己必須懂</h3>
+
+              <p>
+                ✔ 資料流
+                <br />
+                ✔ 架構
+                <br />
+                ✔ Trade-off
+                <br />
+                ✔ 安全性
+                <br />
+                ✔ 為什麼這樣設計
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>🐛 Debug System</h2>
+
+          <table>
+            <tr>
+              <th>問題</th>
+              <th>流程</th>
+            </tr>
+
+            <tr>
+              <td>不知道錯在哪</td>
+              <td>重現 → 縮小範圍 → 測試</td>
+            </tr>
+
+            <tr>
+              <td>Error 太長</td>
+              <td>看最後一行</td>
+            </tr>
+
+            <tr>
+              <td>架構混亂</td>
+              <td>畫資料流</td>
+            </tr>
+
+            <tr>
+              <td>功能太大</td>
+              <td>切小功能</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>🏗 Project 開發流程</h2>
+
+          <div class="grid">
+            <div class="card">
+              <h3>Phase 1 Idea</h3>
+              <p>
+                問題：
+                <br />
+                為什麼做？
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Phase 2 Design</h3>
+              <p>
+                資料結構。
+                <br />
+                API。
+                <br />
+                架構。
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Phase 3 Build</h3>
+              <p>快速建立 MVP。</p>
+            </div>
+
+            <div class="card">
+              <h3>Phase 4 Improve</h3>
+              <p>
+                效能。
+                <br />
+                可讀性。
+                <br />
+                維護性。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>🧠 學習程式策略</h2>
+
+          <ul>
+            <li>不要只看教學，要寫。</li>
+
+            <li>不要只背語法，要理解抽象概念。</li>
+
+            <li>遇到 Bug，建立 Debug 能力。</li>
+
+            <li>寫小工具累積能力。</li>
+
+            <li>閱讀別人的 Code。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>⚠️ Coding 常見陷阱</h2>
+
+          <div class="grid">
+            <div class="card">
+              <h3>一直換技術</h3>
+              <p>
+                先完成作品。
+                <br />
+                不要一直追新工具。
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>過度重構</h3>
+              <p>
+                先確認需求。
+                <br />
+                不要優化不存在的問題。
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>追求完美架構</h3>
+              <p>
+                Production 需要的是可靠。
+                <br />
+                不是藝術品。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>🧑‍⚕️ 心理策略</h2>
+
+          <div class="grid">
+            <div class="card">
+              <h3>降低啟動阻力</h3>
+
+              <p>
+                打開 IDE。
+                <br />
+                寫第一行。
+                <br />
+                不要等待完美狀態。
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>處理卡關</h3>
+
+              <p>
+                卡住不是失敗。
+                <br />
+                是需要重新拆問題。
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>避免耗竭</h3>
+
+              <p>高強度思考後需要恢復。</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>📌 JunOS Coding Rule</h2>
+
+          <blockquote>
+            AI 提升速度。
+
+            <br /><br />
+
+            理解提升能力。
+
+            <br /><br />
+
+            工程師的價值在於判斷。
+          </blockquote>
+        </section>
+      </main>
+    </div>
+
+    <footer>JunOS v1.0</footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

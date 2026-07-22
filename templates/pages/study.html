@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Study System | JunOS</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+
+  <body>
+    <header>
+      <h1>📚 Study System</h1>
+
+      <p>學習與知識管理中心</p>
+    </header>
+
+    <div class="container">
+      <aside>
+        <h2>📚 導覽</h2>
+
+        <ul>
+          <li><a href="{{ url_for('index') }}">🏠 首頁</a></li>
+
+          <li><a href="brain.html">🧠 大腦設定</a></li>
+
+          <li><a href="startup.html">🚀 啟動困難</a></li>
+
+          <li><a href="focus.html">🎯 專注</a></li>
+
+          <li><a href="coding.html">💻 Coding</a></li>
+
+          <li><a href="training.html">🏃 訓練</a></li>
+        </ul>
+      </aside>
+
+      <main>
+        <section class="hero">
+          <h2>學習不是收集資訊。</h2>
+
+          <p>是把外部知識轉換成自己的模型。</p>
+        </section>
+
+        <section>
+          <h2>🧠 學習流程</h2>
+
+          <table>
+            <tr>
+              <th>階段</th>
+
+              <th>目的</th>
+
+              <th>方法</th>
+            </tr>
+
+            <tr>
+              <td>Input 輸入</td>
+
+              <td>接觸新知</td>
+
+              <td>閱讀、影片、課程</td>
+            </tr>
+
+            <tr>
+              <td>Understand 理解</td>
+
+              <td>建立模型</td>
+
+              <td>問為什麼</td>
+            </tr>
+
+            <tr>
+              <td>Practice 練習</td>
+
+              <td>形成能力</td>
+
+              <td>刷題、實作</td>
+            </tr>
+
+            <tr>
+              <td>Output 輸出</td>
+
+              <td>驗證掌握</td>
+
+              <td>寫文章、教人</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>🚀 開始學習 SOP</h2>
+
+          <div class="grid">
+            <div class="card">
+              <h3>STEP 1</h3>
+
+              <p>
+                先定義今天完成什麼。
+
+                <br /><br />
+
+                不要： 「學 ML」
+
+                <br />
+
+                改： 「完成 Gradient Descent 實作」
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>STEP 2</h3>
+
+              <p>先快速看全貌。 建立地圖。</p>
+            </div>
+
+            <div class="card">
+              <h3>STEP 3</h3>
+
+              <p>深入一個核心概念。 不要同時十個。</p>
+            </div>
+
+            <div class="card">
+              <h3>STEP 4</h3>
+
+              <p>馬上實作。 讓大腦修正模型。</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>🎯 深度學習模式</h2>
+
+          <div class="grid">
+            <div class="card">
+              <h3>第一層：知道</h3>
+
+              <p>知道名詞。 例如： Transformer、Attention。</p>
+            </div>
+
+            <div class="card">
+              <h3>第二層：理解</h3>
+
+              <p>知道為什麼需要它。 解決什麼問題。</p>
+            </div>
+
+            <div class="card">
+              <h3>第三層：實作</h3>
+
+              <p>自己寫 Code。 改參數。 觀察結果。</p>
+            </div>
+
+            <div class="card">
+              <h3>第四層：創造</h3>
+
+              <p>用它解決自己的問題。</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>💻 程式學習模式</h2>
+
+          <table>
+            <tr>
+              <th>情況</th>
+
+              <th>策略</th>
+            </tr>
+
+            <tr>
+              <td>看不懂 Code</td>
+
+              <td>先跑，再拆解</td>
+            </tr>
+
+            <tr>
+              <td>不知道怎麼設計</td>
+
+              <td>先畫架構</td>
+            </tr>
+
+            <tr>
+              <td>一直看教學</td>
+
+              <td>開始自己寫</td>
+            </tr>
+
+            <tr>
+              <td>想全部學完</td>
+
+              <td>做 Project 驗證</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>📝 筆記系統</h2>
+
+          <div class="card">
+            <h3>好的筆記不是複製。</h3>
+
+            <p>
+              錯誤：
+
+              <br />
+
+              把教材重新抄一次。
+
+              <br /><br />
+
+              正確：
+
+              <br />
+
+              記錄：
+
+              <br />
+
+              1. 核心問題
+
+              <br />
+
+              2. 解法
+
+              <br />
+
+              3. 我的理解
+
+              <br />
+
+              4. 常見錯誤
+
+              <br />
+
+              5. 如何應用
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2>⚠️ 學習陷阱</h2>
+
+          <ul>
+            <li>一直找最好的教材。</li>
+
+            <li>只理解，不練習。</li>
+
+            <li>同時開太多領域。</li>
+
+            <li>追求完全理解才開始。</li>
+
+            <li>花太多時間整理。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>🧑‍⚕️ 心理策略</h2>
+
+          <div class="grid">
+            <div class="card">
+              <h3>降低完美主義</h3>
+
+              <p>先完成 60 分版本。 再迭代。</p>
+            </div>
+
+            <div class="card">
+              <h3>建立回饋</h3>
+
+              <p>每天留下可見成果。 讓大腦知道自己在前進。</p>
+            </div>
+
+            <div class="card">
+              <h3>避免認知過載</h3>
+
+              <p>一次處理一個主要問題。</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>📌 JunOS Learning Rule</h2>
+
+          <blockquote>
+            不要問： 「我要多久學會？」
+
+            <br /><br />
+
+            問： 「今天我留下什麼能力？」
+          </blockquote>
+        </section>
+      </main>
+    </div>
+
+    <footer>JunOS v1.0</footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

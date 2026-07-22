@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Emotion System | JunOS</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body>
+    <header>
+      <h1>❤️ Emotion System</h1>
+
+      <p>情緒辨識與調節中心</p>
+    </header>
+
+    <div class="container">
+      <aside>
+        <h2>📚 導覽</h2>
+
+        <ul>
+          <li><a href="/">🏠 首頁</a></li>
+
+          <li><a href="/pages/brain">🧠 大腦設定</a></li>
+
+          <li><a href="/pages/stress">😵 壓力管理</a></li>
+
+          <li><a href="/pages/desire">🔥 衝動管理</a></li>
+
+          <li><a href="/pages/adhd">💊 ADHD</a></li>
+        </ul>
+      </aside>
+
+      <main>
+        <section class="hero">
+          <h2>先理解情緒，再處理事情。</h2>
+
+          <p>強烈情緒時，大腦優先保護自己，而不是分析最佳解。</p>
+        </section>
+
+        <section>
+          <h2>🧠 情緒檢測</h2>
+
+          <table>
+            <tr>
+              <th>現在感覺</th>
+              <th>可能訊號</th>
+              <th>第一步</th>
+            </tr>
+
+            <tr>
+              <td>焦慮</td>
+              <td>未知、不確定、害怕失控</td>
+              <td>把問題具體化</td>
+            </tr>
+
+            <tr>
+              <td>憤怒</td>
+              <td>界線被侵犯、感覺不公平</td>
+              <td>先降低強度</td>
+            </tr>
+
+            <tr>
+              <td>悲傷</td>
+              <td>失落、期待落差</td>
+              <td>允許感受存在</td>
+            </tr>
+
+            <tr>
+              <td>羞愧</td>
+              <td>覺得自己不夠好</td>
+              <td>區分行為與自我價值</td>
+            </tr>
+
+            <tr>
+              <td>空虛</td>
+              <td>缺少連結或方向</td>
+              <td>回到重要目標</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>🚨 情緒爆發 SOP</h2>
+
+          <div class="grid">
+            <div class="card">
+              <h3>STEP 1</h3>
+
+              <p>
+                停止解決問題。
+                <br /><br />
+                先處理情緒強度。
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>STEP 2</h3>
+
+              <p>
+                命名情緒。
+                <br /><br />
+                「我現在是焦慮。」
+                <br />
+                「我現在是失望。」
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>STEP 3</h3>
+
+              <p>
+                觀察身體。
+                <br /><br />
+                肩膀？
+                <br />
+                呼吸？
+                <br />
+                心跳？
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>STEP 4</h3>
+
+              <p>
+                等強度下降。
+                <br />
+                再思考。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>🎭 情緒 → 行動轉換</h2>
+
+          <table>
+            <tr>
+              <th>情緒</th>
+              <th>不要做</th>
+              <th>改做</th>
+            </tr>
+
+            <tr>
+              <td>焦慮</td>
+              <td>一直想最壞結果</td>
+              <td>列出下一步</td>
+            </tr>
+
+            <tr>
+              <td>憤怒</td>
+              <td>立即回覆訊息</td>
+              <td>等待冷卻</td>
+            </tr>
+
+            <tr>
+              <td>低落</td>
+              <td>完全隔離自己</td>
+              <td>做低阻力活動</td>
+            </tr>
+
+            <tr>
+              <td>挫折</td>
+              <td>否定全部努力</td>
+              <td>回顧累積</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>🧩 情緒紀錄模板</h2>
+
+          <div class="card">
+            <h3>事件</h3>
+            <p>發生什麼？</p>
+
+            <h3>想法</h3>
+            <p>我腦中第一個念頭？</p>
+
+            <h3>情緒</h3>
+            <p>0~100分，目前強度？</p>
+
+            <h3>需求</h3>
+            <p>我真正需要的是什麼？</p>
+
+            <h3>下一步</h3>
+            <p>最小可以做什麼？</p>
+          </div>
+        </section>
+
+        <section>
+          <h2>🧑‍⚕️ 心理工具箱</h2>
+
+          <div class="grid">
+            <div class="card">
+              <h3>CBT</h3>
+
+              <p>
+                情緒來自：
+
+                <br />
+
+                事件 × 解讀
+
+                <br /><br />
+
+                不是所有想法都等於事實。
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>ACT</h3>
+
+              <p>
+                不要跟情緒戰鬥。
+
+                <br /><br />
+
+                讓它存在， 但選擇符合價值的行動。
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>DBT</h3>
+
+              <p>
+                強烈情緒時：
+
+                <br /><br />
+
+                先穩定身體， 再處理人與事情。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>⚡ 60秒情緒復位</h2>
+
+          <blockquote>
+            1. 停止動作
+
+            <br /><br />
+
+            2. 深呼吸
+
+            <br /><br />
+
+            3. 說出情緒名稱
+
+            <br /><br />
+
+            4. 問： 「我真正想保護的是什麼？」
+
+            <br /><br />
+
+            5. 選下一步
+          </blockquote>
+        </section>
+
+        <section>
+          <h2>📌 JunOS Reminder</h2>
+
+          <blockquote>
+            情緒不是需要被消滅的 Bug。
+
+            <br /><br />
+
+            它比較像系統通知。
+
+            <br />
+
+            先閱讀，再處理。
+          </blockquote>
+        </section>
+      </main>
+    </div>
+
+    <footer>JunOS v1.0</footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

@@ -5,20 +5,31 @@ JunOS/
 ├── script.js
 │
 ├── pages/
-│   ├── brain.html
-│   ├── startup.html
-│   ├── focus.html
-│   ├── stress.html
-│   ├── desire.html
-│   ├── emotion.html
-│   ├── adhd.html
 │   ├── study.html
-│   ├── coding.html
 │   ├── training.html
 │   ├── sleep.html
-│   ├── relationship.html
-│   ├── emergency.html
-│   ├── psychology.html
-│   └── manual.html
+│   ├── emotion.html
+│   └── ...
 │
-└── assets/
+├── records/
+│   ├── dashboard.html
+│   ├── study-log.html
+│   ├── training-log.html
+│   ├── sleep-log.html
+│   ├── mood-log.html
+│   ├── habit-log.html
+│   └── journal.html
+│
+└── js/
+    ├── storage.js
+    ├── record.js
+    └── dashboard.js
+
+
+
+
+
+
+
+
+prettier --write "**/*.html"
