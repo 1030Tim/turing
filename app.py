@@ -1,10 +1,9 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, send_file
 from database import init_db, get_db
 from datetime import datetime
 import csv
-import sqlite3
+import tempfile
 
-from flask import send_file
 
 app = Flask(__name__)
 
@@ -41,58 +40,72 @@ def dashboard():
         records=records
     )
 
+
+
+# CSV 匯出
 @app.route("/records/export")
 def export_records():
 
-    conn = sqlite3.connect("junos.db")
+    conn = get_db()
 
-    cursor = conn.cursor()
 
-    cursor.execute("""
-        SELECT 
+    records = conn.execute(
+        """
+        SELECT
+        date,
         sleep,
         energy,
         focus,
         stress,
-        thoughts,
-        created_at
-        FROM daily_records
-    """)
+        thoughts
+        FROM records
+        ORDER BY id DESC
+        """
+    ).fetchall()
 
-    data = cursor.fetchall()
 
     conn.close()
 
 
-    file_path = "junos_records.csv"
+
+    temp = tempfile.NamedTemporaryFile(
+        delete=False,
+        suffix=".csv"
+    )
 
 
     with open(
-        file_path,
+        temp.name,
         "w",
         newline="",
         encoding="utf-8-sig"
     ) as f:
 
+
         writer = csv.writer(f)
 
+
         writer.writerow([
-            "睡眠時間",
-            "能量評估",
-            "專注度",
+            "日期",
+            "睡眠",
+            "能量",
+            "專注",
             "壓力",
-            "內耗事項",
-            "日期"
+            "內耗事項"
         ])
 
-        writer.writerows(data)
+
+        writer.writerows(records)
 
 
 
     return send_file(
-        file_path,
-        as_attachment=True
+        temp.name,
+        as_attachment=True,
+        download_name="JunOS_records.csv"
     )
+
+
 
 
 @app.route("/records/add", methods=["POST"])
@@ -141,7 +154,6 @@ def add_record():
 
 
     return redirect("/records/dashboard")
-
 
 
 
