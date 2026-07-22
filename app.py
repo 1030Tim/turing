@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request, redirect
 from database import init_db, get_db
 from datetime import datetime
+import csv
+import sqlite3
 
+from flask import send_file
 
 app = Flask(__name__)
 
@@ -38,7 +41,58 @@ def dashboard():
         records=records
     )
 
+@app.route("/records/export")
+def export_records():
 
+    conn = sqlite3.connect("junos.db")
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT 
+        sleep,
+        energy,
+        focus,
+        stress,
+        thoughts,
+        created_at
+        FROM daily_records
+    """)
+
+    data = cursor.fetchall()
+
+    conn.close()
+
+
+    file_path = "junos_records.csv"
+
+
+    with open(
+        file_path,
+        "w",
+        newline="",
+        encoding="utf-8-sig"
+    ) as f:
+
+        writer = csv.writer(f)
+
+        writer.writerow([
+            "睡眠時間",
+            "能量評估",
+            "專注度",
+            "壓力",
+            "內耗事項",
+            "日期"
+        ])
+
+        writer.writerows(data)
+
+
+
+    return send_file(
+        file_path,
+        as_attachment=True
+    )
 
 
 @app.route("/records/add", methods=["POST"])
