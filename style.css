@@ -1,0 +1,815 @@
+/* ===========================
+   JunOS Personal OS
+   style.css
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --bg:#0f1117;
+    --bg2:#181c24;
+    --card:#20252f;
+
+    --text:#f5f5f5;
+    --sub:#9aa4b2;
+
+    --primary:#4f9dff;
+    --green:#2ecc71;
+    --red:#ff6b6b;
+    --yellow:#ffd166;
+
+    --radius:18px;
+
+    --shadow:
+        0 8px 30px rgba(0,0,0,.35);
+
+}
+
+body{
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    font-family:
+
+    "Noto Sans TC",
+    "Segoe UI",
+    sans-serif;
+
+    line-height:1.8;
+
+}
+
+/* ------------------------- */
+
+header{
+
+    padding:35px;
+
+    background:#111827;
+
+    border-bottom:
+
+    1px solid rgba(255,255,255,.08);
+
+}
+
+header h1{
+
+    font-size:42px;
+
+}
+
+header p{
+
+    color:var(--sub);
+
+}
+
+/* ------------------------- */
+
+.container{
+
+    display:grid;
+
+    grid-template-columns:
+
+    270px
+    1fr;
+
+    min-height:100vh;
+
+}
+
+/* ------------------------- */
+
+aside{
+
+    background:var(--bg2);
+
+    padding:30px;
+
+    border-right:
+
+    1px solid rgba(255,255,255,.08);
+
+}
+
+aside h2{
+
+    margin-bottom:25px;
+
+}
+
+aside ul{
+
+    list-style:none;
+
+}
+
+aside li{
+
+    margin-bottom:10px;
+
+}
+
+aside a{
+
+    display:block;
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:12px 15px;
+
+    border-radius:12px;
+
+    transition:.25s;
+
+}
+
+aside a:hover{
+
+    background:var(--primary);
+
+    transform:translateX(6px);
+
+}
+
+/* ------------------------- */
+
+main{
+
+    padding:40px;
+
+}
+
+/* ------------------------- */
+
+.hero{
+
+    background:linear-gradient(
+
+        135deg,
+
+        #3b82f6,
+
+        #2563eb
+
+    );
+
+    padding:40px;
+
+    border-radius:25px;
+
+    margin-bottom:35px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.hero h2{
+
+    font-size:38px;
+
+    margin-bottom:15px;
+
+}
+
+.hero p{
+
+    font-size:18px;
+
+}
+
+/* ------------------------- */
+
+.grid{
+
+    display:grid;
+
+    gap:25px;
+
+    grid-template-columns:
+
+    repeat(auto-fill,minmax(280px,1fr));
+
+}
+
+/* ------------------------- */
+
+.card{
+
+    background:var(--card);
+
+    padding:25px;
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    transition:.25s;
+
+    border:
+
+    1px solid rgba(255,255,255,.05);
+
+}
+
+.card:hover{
+
+    transform:
+
+    translateY(-8px);
+
+    border-color:
+
+    var(--primary);
+
+}
+
+/* ------------------------- */
+
+.card h3{
+
+    margin-bottom:15px;
+
+}
+
+.card p{
+
+    color:var(--sub);
+
+    margin-bottom:25px;
+
+}
+
+.card a{
+
+    text-decoration:none;
+
+    color:var(--primary);
+
+    font-weight:bold;
+
+}
+
+/* ------------------------- */
+
+section{
+
+    margin-bottom:45px;
+
+}
+
+/* ------------------------- */
+
+blockquote{
+
+    margin-top:15px;
+
+    padding:20px;
+
+    border-left:
+
+    5px solid var(--primary);
+
+    background:#1b2230;
+
+    border-radius:12px;
+
+}
+
+/* ------------------------- */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+th{
+
+    background:#222;
+
+}
+
+td,
+th{
+
+    padding:15px;
+
+    border:
+
+    1px solid rgba(255,255,255,.08);
+
+}
+
+/* ------------------------- */
+
+button{
+
+    cursor:pointer;
+
+    border:none;
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:
+
+    12px
+    22px;
+
+    border-radius:12px;
+
+    transition:.2s;
+
+}
+
+button:hover{
+
+    transform:scale(1.05);
+
+}
+
+/* ------------------------- */
+
+input,
+textarea{
+
+    width:100%;
+
+    background:#161b22;
+
+    color:white;
+
+    border:
+
+    1px solid rgba(255,255,255,.08);
+
+    padding:15px;
+
+    border-radius:12px;
+
+    outline:none;
+
+}
+
+input:focus,
+textarea:focus{
+
+    border-color:
+
+    var(--primary);
+
+}
+
+/* ------------------------- */
+
+footer{
+
+    text-align:center;
+
+    padding:35px;
+
+    color:var(--sub);
+
+}
+
+/* ------------------------- */
+
+.success{
+
+    color:var(--green);
+
+}
+
+.warning{
+
+    color:var(--yellow);
+
+}
+
+.danger{
+
+    color:var(--red);
+
+}
+
+/* ------------------------- */
+
+.badge{
+
+    display:inline-block;
+
+    padding:
+
+    5px
+    12px;
+
+    border-radius:50px;
+
+    font-size:13px;
+
+    background:var(--primary);
+
+}
+
+/* ------------------------- */
+
+.progress{
+
+    width:100%;
+
+    height:10px;
+
+    border-radius:50px;
+
+    overflow:hidden;
+
+    background:#333;
+
+}
+
+.progress div{
+
+    height:100%;
+
+    background:var(--green);
+
+}
+
+/* ------------------------- */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#444;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#666;
+
+}
+
+/* ------------------------- */
+
+@media(max-width:900px){
+
+.container{
+
+    grid-template-columns:1fr;
+
+}
+
+aside{
+
+    border-right:none;
+
+    border-bottom:
+
+    1px solid rgba(255,255,255,.08);
+
+}
+
+main{
+
+    padding:25px;
+
+}
+
+.hero h2{
+
+    font-size:30px;
+
+}
+}
+/* =====================================
+   JunOS Responsive Global System
+   自動適應手機 / 平板 / 電腦
+===================================== */
+
+
+/* 全域盒模型 */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+/* 基礎設定 */
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    width: 100%;
+    min-height: 100vh;
+
+    margin: 0;
+    padding: 0;
+
+    overflow-x: hidden;
+
+    font-family:
+        "Noto Sans TC",
+        "Microsoft JhengHei",
+        sans-serif;
+
+}
+
+
+/* 圖片、影片自適應 */
+
+img,
+video {
+
+    max-width: 100%;
+    height: auto;
+
+    display: block;
+
+}
+
+
+
+/* 容器自動縮放 */
+
+.container {
+
+    width: min(1200px, 90%);
+
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+
+/* Grid 自動排列 */
+
+.grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 1.5rem;
+
+}
+
+
+
+/* Table 手機可滑動 */
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    overflow-x: auto;
+
+}
+
+
+
+.table-container {
+
+    width: 100%;
+
+    overflow-x: auto;
+
+}
+
+
+
+
+/* =====================================
+   Tablet
+   平板模式
+===================================== */
+
+@media (max-width: 900px) {
+
+
+    html {
+
+        font-size: 15px;
+
+    }
+
+
+    .container {
+
+        width: 92%;
+
+    }
+
+
+    h1 {
+
+        font-size: 2rem;
+
+    }
+
+
+    h2 {
+
+        font-size: 1.5rem;
+
+    }
+
+
+}
+
+
+
+
+
+/* =====================================
+   Mobile
+   手機模式
+===================================== */
+
+@media (max-width: 600px) {
+
+
+    html {
+
+        font-size: 14px;
+
+    }
+
+
+
+    body {
+
+        padding: 0;
+
+    }
+
+
+
+    .container {
+
+        width: 94%;
+
+    }
+
+
+
+    header {
+
+        padding: 1rem;
+
+        text-align: center;
+
+    }
+
+
+
+    h1 {
+
+        font-size: 1.7rem;
+
+    }
+
+
+
+    h2 {
+
+        font-size: 1.3rem;
+
+    }
+
+
+
+    p {
+
+        line-height: 1.8;
+
+    }
+
+
+
+    /* 側邊欄變成上方導航 */
+
+    aside {
+
+        width: 100%;
+
+        position: relative;
+
+    }
+
+
+
+    aside ul {
+
+        display: flex;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 0.5rem;
+
+        padding: 0;
+
+    }
+
+
+
+    aside li {
+
+        list-style: none;
+
+    }
+
+
+
+    aside a {
+
+        display: block;
+
+        padding: 0.5rem 0.8rem;
+
+    }
+
+
+
+
+    /* 卡片手機排列 */
+
+
+    .grid {
+
+        grid-template-columns:
+
+            1fr;
+
+    }
+
+
+
+
+    /* 表格手機模式 */
+
+
+    table {
+
+        display: block;
+
+        overflow-x: auto;
+
+        white-space: nowrap;
+
+    }
+
+
+
+
+    .card {
+
+        padding: 1rem;
+
+    }
+
+
+
+    blockquote {
+
+        margin: 1rem 0;
+
+        padding: 1rem;
+
+    }
+
+
+}
