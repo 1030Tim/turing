@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add Record | JunOS</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>📝 JunOS Record Input</h1>
+
+<p>捕捉當下狀態，不依靠記憶</p>
+
+</header>
+
+
+
+<div class="container">
+
+
+<main>
+
+
+
+<section class="hero">
+
+<h2>新增紀錄</h2>
+
+<p>
+想到什麼就記錄。
+一天可以有多筆。
+</p>
+
+</section>
+
+
+
+
+<form action="/records/add" method="POST">
+
+
+<div class="card">
+
+
+<h3>📌 Record Type</h3>
+
+
+<select name="type">
+
+
+<option value="daily">
+🌅 Daily State
+</option>
+
+
+<option value="training">
+🏃 Training
+</option>
+
+
+<option value="coding">
+💻 Coding
+</option>
+
+
+<option value="study">
+📚 Study
+</option>
+
+
+<option value="music">
+🎵 Music
+</option>
+
+
+<option value="emotion">
+❤️ Emotion
+</option>
+
+
+<option value="reflection">
+🧠 Reflection
+</option>
+
+
+</select>
+
+
+
+<br><br>
+
+
+
+
+<h3>⚡ System State</h3>
+
+
+<label>
+睡眠 (hours)
+</label>
+
+<br>
+
+
+<input
+type="number"
+step="0.1"
+name="sleep"
+placeholder="7.5"
+>
+
+
+
+<br><br>
+
+
+
+<label>
+能量 Energy 0-100
+</label>
+
+<br>
+
+
+<input
+type="number"
+name="energy"
+min="0"
+max="100"
+placeholder="80"
+>
+
+
+
+
+<br><br>
+
+
+
+<label>
+專注 Focus 0-100
+</label>
+
+<br>
+
+
+<input
+type="number"
+name="focus"
+min="0"
+max="100"
+placeholder="90"
+>
+
+
+
+
+<br><br>
+
+
+
+<label>
+壓力 Stress 0-100
+</label>
+
+<br>
+
+
+<input
+type="number"
+name="stress"
+min="0"
+max="100"
+placeholder="30"
+>
+
+
+
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+
+<h3>🧠 Thought Log</h3>
+
+
+
+<textarea
+
+name="thoughts"
+
+rows="8"
+
+placeholder="
+現在想到什麼？
+
+例如：
+
+今天寫 PyTorch 進入 flow
+訓練跳高爆發不好
+對未來研究方向有想法
+">
+
+</textarea>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+
+<h3>🎯 Performance</h3>
+
+
+
+<label>
+今日完成：
+</label>
+
+
+<textarea
+
+name="achievement"
+
+rows="4"
+
+placeholder="
+完成什麼？
+
+例如：
+完成 MongoDB 部署
+刷 50 題保險題
+">
+
+</textarea>
+
+
+
+
+<br><br>
+
+
+
+<label>
+問題 / 阻礙：
+</label>
+
+
+
+<textarea
+
+name="problem"
+
+rows="4"
+
+placeholder="
+卡在哪？
+
+例如：
+注意力下降
+睡眠不足
+技術問題
+">
+
+</textarea>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h3>💡 Insight</h3>
+
+
+
+<textarea
+
+name="insight"
+
+rows="4"
+
+placeholder="
+今天學到什麼？
+
+新的想法？
+心理觀察？
+技術突破？
+">
+
+</textarea>
+
+
+</div>
+
+
+
+
+
+<button type="submit">
+
+保存紀錄
+
+</button>
+
+
+
+
+</form>
+
+
+
+</main>
+
+
+</div>
+
+
+
+<footer>
+
+JunOS v1.0
+
+</footer>
+
+
+<script src="/static/script.js"></script>
+
+
+</body>
+
+
+</html>
