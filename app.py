@@ -1,12 +1,22 @@
 from flask import Flask, render_template, request, redirect
 from datetime import datetime
+
 from database import init_db, get_db
+from daily_manager import DailyManager
 
 
 app = Flask(__name__)
 
 
+# =========================
+# Database Manager
+# =========================
+
 collection = get_db()
+
+daily_manager = DailyManager(
+    collection
+)
 
 
 
@@ -23,7 +33,6 @@ def index():
 
 
 
-
 # =========================
 # Dashboard
 # =========================
@@ -32,180 +41,7 @@ def index():
 def dashboard():
 
 
-    records = list(
-        collection.find()
-        .sort(
-            "created_at",
-            -1
-        )
-    )
-
-
-    # 防止舊資料格式錯誤
-
-    for r in records:
-
-
-        if not isinstance(
-            r.get("sleep"),
-            dict
-        ):
-            r["sleep"] = {}
-
-
-        if not isinstance(
-            r.get("brain"),
-            dict
-        ):
-            r["brain"] = {}
-
-
-        if not isinstance(
-            r.get("body"),
-            dict
-        ):
-            r["body"] = {}
-
-
-        if not isinstance(
-            r.get("output"),
-            dict
-        ):
-            r["output"] = {}
-
-
-        if not isinstance(
-            r.get("emotion"),
-            dict
-        ):
-            r["emotion"] = {}
-
-
-        if not isinstance(
-            r.get("desire"),
-            dict
-        ):
-            r["desire"] = {}
-
-
-        if not isinstance(
-            r.get("digital"),
-            dict
-        ):
-            r["digital"] = {}
-
-
-        if not isinstance(
-            r.get("reflection"),
-            dict
-        ):
-            r["reflection"] = {}
-
-
-
-        # default
-
-
-        for key in [
-            "hours",
-            "quality"
-        ]:
-            r["sleep"].setdefault(
-                key,
-                "-"
-            )
-
-
-        for key in [
-            "adhd_start",
-            "focus",
-            "flow"
-        ]:
-            r["brain"].setdefault(
-                key,
-                "-"
-            )
-
-
-
-        for key in [
-            "fatigue",
-            "training",
-            "pain"
-        ]:
-            r["body"].setdefault(
-                key,
-                "-"
-            )
-
-
-
-        for key in [
-            "coding",
-            "study",
-            "research",
-            "writing",
-            "music",
-            "polevault"
-        ]:
-            r["output"].setdefault(
-                key,
-                "-"
-            )
-
-
-
-        for key in [
-            "stress",
-            "anxiety",
-            "happiness",
-            "confidence",
-            "loneliness"
-        ]:
-            r["emotion"].setdefault(
-                key,
-                "-"
-            )
-
-
-
-        for key in [
-            "urge",
-            "trigger",
-            "control"
-        ]:
-            r["desire"].setdefault(
-                key,
-                "-"
-            )
-
-
-
-        for key in [
-            "phone",
-            "youtube",
-            "shorts",
-            "social"
-        ]:
-            r["digital"].setdefault(
-                key,
-                "-"
-            )
-
-
-
-        for key in [
-            "win",
-            "problem",
-            "tomorrow",
-            "achievement",
-            "insight"
-        ]:
-            r["reflection"].setdefault(
-                key,
-                ""
-            )
-
+    records = daily_manager.get_records()
 
 
     return render_template(
@@ -215,32 +51,23 @@ def dashboard():
 
 
 
-
-
-
 # =========================
 # Add Page
 # =========================
 
-
 @app.route("/records/add")
 def add_page():
 
-
     return render_template(
-        "records/add.html"
+        "records/add.html",
+        records=[]
     )
-
-
-
-
 
 
 
 # =========================
 # Add Record
 # =========================
-
 
 @app.route(
     "/records/add",
@@ -258,9 +85,9 @@ def add_record():
     def get_int(name):
 
         value = request.form.get(
-            name,
-            ""
+            name
         )
+
 
         try:
 
@@ -272,13 +99,12 @@ def add_record():
 
 
 
-
     def get_float(name):
 
         value = request.form.get(
-            name,
-            ""
+            name
         )
+
 
         try:
 
@@ -286,9 +112,7 @@ def add_record():
 
         except:
 
-            return 0
-
-
+            return 0.0
 
 
 
@@ -311,6 +135,22 @@ def add_record():
         request.form.get(
             "type",
             "daily"
+        ),
+
+
+
+        "title":
+        request.form.get(
+            "title",
+            ""
+        ),
+
+
+
+        "summary":
+        request.form.get(
+            "summary",
+            ""
         ),
 
 
@@ -351,6 +191,18 @@ def add_record():
             "flow":
             get_int(
                 "flow"
+            ),
+
+
+            "thinking_speed":
+            get_int(
+                "thinking_speed"
+            ),
+
+
+            "noise":
+            get_int(
+                "noise"
             )
 
         },
@@ -375,6 +227,12 @@ def add_record():
             "pain":
             get_int(
                 "pain"
+            ),
+
+
+            "recovery":
+            get_int(
+                "recovery"
             )
 
         },
@@ -582,12 +440,11 @@ def add_record():
 
         }
 
-
     }
 
 
 
-    collection.insert_one(
+    daily_manager.insert(
         data
     )
 
@@ -599,16 +456,13 @@ def add_record():
 
 
 
-
-
-
-
 # =========================
 # Pages
 # =========================
 
-
-@app.route("/pages/<name>")
+@app.route(
+    "/pages/<name>"
+)
 def pages(name):
 
     try:
@@ -617,18 +471,19 @@ def pages(name):
             f"pages/{name}.html"
         )
 
-    except:
 
-        return "Page Not Found",404
+    except Exception:
 
-
+        return (
+            "Page Not Found",
+            404
+        )
 
 
 
 # =========================
 # Run
 # =========================
-
 
 if __name__ == "__main__":
 
