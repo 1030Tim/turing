@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>JunOS Daily Record</title>
+<title>JunOS System Monitor</title>
 
 <link rel="stylesheet" href="/static/style.css">
 
@@ -36,11 +36,19 @@ Personal Brain Operating System
 
 <h2>📚 System</h2>
 
-
 <ul>
 
 <li>
-<a href="/">🏠 Dashboard</a>
+<a href="/">
+🏠 Dashboard
+</a>
+</li>
+
+
+<li>
+<a href="/records/add">
+📝 Add Record
+</a>
 </li>
 
 
@@ -65,15 +73,7 @@ Personal Brain Operating System
 </li>
 
 
-<li>
-<a href="/pages/desire">
-🔥 Desire
-</a>
-</li>
-
-
 </ul>
-
 
 </aside>
 
@@ -87,14 +87,13 @@ Personal Brain Operating System
 
 <section class="hero">
 
-
 <h2>
-每日系統紀錄
+JunOS Daily Monitor
 </h2>
 
 
 <p>
-不是評價自己，而是觀察自己的 Operating System。
+觀察自己的 Operating System，而不是評價自己。
 </p>
 
 
@@ -108,16 +107,12 @@ Personal Brain Operating System
 
 
 <h2>
-📝 今日輸入
+📊 System Overview
 </h2>
 
 
 
-<form action="/records/add" method="POST">
-
-
 <div class="grid">
-
 
 
 <div class="card">
@@ -127,38 +122,32 @@ Personal Brain Operating System
 </h3>
 
 
-<label>
-睡眠時間
-</label>
-
-
-<input 
-type="number"
-step="0.1"
-name="sleep"
-required
-placeholder="7.5">
-
-
-<br>
-
-
-<label>
-睡眠品質 0-100
-</label>
-
-
-<input
-type="number"
-name="sleep_quality"
-min="0"
-max="100"
-required>
+<p>
+{{records[0].sleep.hours if records else "-"}}
+hours
+</p>
 
 
 </div>
 
 
+
+<div class="card">
+
+<h3>
+🧠 Brain Flow
+</h3>
+
+
+<p>
+Flow:
+
+{{records[0].brain.flow if records else "-"}}
+
+</p>
+
+
+</div>
 
 
 
@@ -166,50 +155,19 @@ required>
 <div class="card">
 
 <h3>
-🧠 Brain
+💻 Output
 </h3>
 
 
-<label>
-ADHD 啟動難度
-</label>
+<p>
 
+Coding:
 
-<input
-type="number"
-name="adhd_start"
-min="0"
-max="100">
+{{records[0].output.coding if records else "-"}}
 
+min
 
-<br>
-
-
-<label>
-注意力穩定度
-</label>
-
-
-<input
-type="number"
-name="focus"
-min="0"
-max="100">
-
-
-<br>
-
-
-<label>
-Flow 狀態
-</label>
-
-
-<input
-type="number"
-name="flow"
-min="0"
-max="100">
+</p>
 
 
 </div>
@@ -217,293 +175,27 @@ max="100">
 
 
 
-
-
 <div class="card">
-
-<h3>
-🏃 Body
-</h3>
-
-
-<label>
-身體疲勞
-</label>
-
-
-<input
-type="number"
-name="fatigue"
-min="0"
-max="100">
-
-
-<br>
-
-
-<label>
-訓練品質
-</label>
-
-
-<input
-type="number"
-name="training"
-min="0"
-max="100">
-
-
-</div>
-
-
-
-
-
-
-
-<div class="card">
-
-<h3>
-🚀 Output
-</h3>
-
-
-<label>
-Coding 分鐘
-</label>
-
-
-<input
-type="number"
-name="coding">
-
-
-<br>
-
-
-<label>
-Study 分鐘
-</label>
-
-
-<input
-type="number"
-name="study">
-
-
-<br>
-
-
-<label>
-創作時間
-</label>
-
-
-<input
-type="number"
-name="creation">
-
-
-</div>
-
-
-
-
-
-<div class="card">
-
 
 <h3>
 ❤️ Emotion
 </h3>
 
 
-<label>
-壓力
-</label>
+<p>
 
+Stress:
 
-<input
-type="number"
-name="stress"
-min="0"
-max="100">
+{{records[0].emotion.stress if records else "-"}}
 
-
-
-<br>
-
-
-<label>
-心理雜訊
-</label>
-
-
-<input
-type="number"
-name="noise"
-min="0"
-max="100">
-
-
-<br>
-
-
-<label>
-情緒穩定
-</label>
-
-
-<input
-type="number"
-name="emotion"
-min="0"
-max="100">
-
+</p>
 
 
 </div>
 
 
 
-
-
-
-
-
-<div class="card">
-
-
-<h3>
-🔥 Desire Control
-</h3>
-
-
-<label>
-衝動強度
-</label>
-
-
-<input
-type="number"
-name="urge"
-min="0"
-max="100">
-
-
-
-<br>
-
-
-<label>
-觸發原因
-</label>
-
-
-<select name="trigger">
-
-
-<option>
-疲勞
-</option>
-
-
-<option>
-壓力
-</option>
-
-
-<option>
-孤單
-</option>
-
-
-<option>
-無聊
-</option>
-
-
-<option>
-逃避
-</option>
-
-
-</select>
-
-
 </div>
-
-
-
-
-</div>
-
-
-
-
-
-
-<div class="card">
-
-
-<h3>
-📌 Daily Reflection
-</h3>
-
-
-
-<label>
-今日最大勝利
-</label>
-
-
-<textarea
-name="win"
-rows="3">
-</textarea>
-
-
-
-
-<label>
-今日最大問題
-</label>
-
-
-<textarea
-name="problem"
-rows="3">
-</textarea>
-
-
-
-
-
-<label>
-明日調整
-</label>
-
-
-<textarea
-name="tomorrow"
-rows="3">
-</textarea>
-
-
-
-</div>
-
-
-
-
-
-<button type="submit">
-保存今日紀錄
-</button>
-
-
-
-</form>
 
 
 </section>
@@ -514,55 +206,65 @@ rows="3">
 
 
 
-
 <section>
 
+
 <h2>
-📈 Historical Data
+📈 Timeline
 </h2>
+
 
 
 <table>
 
+
 <tr>
 
 <th>
-日期
+時間
 </th>
 
-<th>
-😴 Sleep
-</th>
 
 <th>
-🧠 Brain
+Type
 </th>
 
-<th>
-🚀 Output
-</th>
 
 <th>
-❤️ Emotion
+Brain
 </th>
 
+
 <th>
-📌 Reflection
+Output
 </th>
+
+
+<th>
+Emotion
+</th>
+
+
+<th>
+Reflection
+</th>
+
 
 </tr>
+
 
 
 
 {% for record in records %}
 
 
+
 <tr>
 
 
 <td>
 
-{{record.date}}
+{{record.created_at}}
 
 </td>
 
@@ -570,102 +272,129 @@ rows="3">
 
 <td>
 
-睡眠:
-{{record.sleep.hours}}
-hr
-
-<br>
-
-品質:
-{{record.sleep.quality}}
+{{record.type | default("daily")}}
 
 </td>
 
 
 
-
 <td>
 
-ADHD:
-{{record.brain.adhd_start}}
-
-<br>
-
-Focus:
-{{record.brain.focus}}
-
-<br>
 
 Flow:
+
 {{record.brain.flow}}
 
+
+<br>
+
+
+Focus:
+
+{{record.brain.focus}}
+
+
+<br>
+
+
+ADHD:
+
+{{record.brain.adhd_start}}
+
+
 </td>
 
 
 
 
+
 <td>
+
 
 Coding:
+
 {{record.output.coding}}
-min
+
 
 <br>
+
 
 Study:
+
 {{record.output.study}}
-min
+
 
 <br>
+
 
 Creation:
+
 {{record.output.creation}}
-min
+
 
 </td>
 
 
 
 
+
 <td>
+
 
 Stress:
+
 {{record.emotion.stress}}
 
+
 <br>
+
 
 Noise:
+
 {{record.emotion.noise}}
+
 
 <br>
 
+
 Stability:
+
 {{record.emotion.stability}}
+
 
 </td>
 
 
 
 
+
 <td>
 
-勝利:
+
+<b>
+Win:
+</b>
+
+
+<br>
 
 {{record.reflection.win}}
 
+
+
 <br><br>
 
 
-問題:
+<b>
+Problem:
+</b>
+
+
+<br>
 
 {{record.reflection.problem}}
 
-<br><br>
 
-
-明日:
-
-{{record.reflection.tomorrow}}
 
 </td>
 
@@ -674,7 +403,9 @@ Stability:
 </tr>
 
 
+
 {% else %}
+
 
 
 <tr>
@@ -688,7 +419,9 @@ Stability:
 </tr>
 
 
+
 {% endfor %}
+
 
 
 </table>
@@ -700,35 +433,78 @@ Stability:
 
 
 
+
+
 <section>
 
 
 <h2>
-⚙️ JunOS Philosophy
+⚙️ JunOS Rule
 </h2>
 
 
-
-<blockquote>
-
-
-不要問：
-
-「我今天有沒有成功」
+<div class="grid">
 
 
-<br><br>
+<div class="card">
+
+<h3>
+低能量
+</h3>
 
 
-問：
+<p>
 
-「我的系統今天運作如何？」
+睡眠不足、壓力高時降低任務難度。
+
+</p>
 
 
-</blockquote>
+</div>
+
+
+
+<div class="card">
+
+<h3>
+High Output
+</h3>
+
+
+<p>
+
+Flow 狀態適合 Coding / Research / Training。
+
+</p>
+
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+Long Term Data
+</h3>
+
+
+<p>
+
+累積資料，找自己的 pattern。
+
+</p>
+
+
+</div>
+
+
+</div>
 
 
 </section>
+
+
 
 
 
@@ -740,9 +516,10 @@ Stability:
 
 
 
+
 <footer>
 
-JunOS v2.0
+JunOS v3.0
 
 </footer>
 
@@ -752,5 +529,6 @@ JunOS v2.0
 
 
 </body>
+
 
 </html>

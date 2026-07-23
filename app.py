@@ -1,27 +1,13 @@
-from flask import (
-    Flask,
-    render_template,
-    request,
-    redirect,
-    send_file
-)
-
-from database import (
-    init_db,
-    get_db
-)
-
+from flask import Flask, render_template, request, redirect
 from datetime import datetime
-
-import csv
-
+from database import init_db, get_db
+import os
 
 
 app = Flask(__name__)
 
 
-init_db()
-
+collection = get_db()
 
 
 # =====================
@@ -38,35 +24,11 @@ def index():
 
 
 # =====================
-# 靜態 pages
-# =====================
-
-@app.route("/pages/<page>")
-def pages(page):
-
-    try:
-
-        return render_template(
-            f"pages/{page}.html"
-        )
-
-    except:
-
-        return "Page Not Found",404
-
-
-
-
-
-# =====================
-# Dashboard
+# Daily Record Dashboard
 # =====================
 
 @app.route("/records/dashboard")
 def dashboard():
-
-
-    collection = get_db()
 
 
     records = list(
@@ -78,6 +40,113 @@ def dashboard():
     )
 
 
+    # 防止舊資料缺欄位
+    for r in records:
+
+
+        if "sleep" not in r:
+            r["sleep"] = {}
+
+
+        if "brain" not in r:
+            r["brain"] = {}
+
+
+        if "body" not in r:
+            r["body"] = {}
+
+
+        if "output" not in r:
+            r["output"] = {}
+
+
+        if "emotion" not in r:
+            r["emotion"] = {}
+
+
+        if "reflection" not in r:
+            r["reflection"] = {}
+
+
+
+        # 預設值
+
+        r["sleep"].setdefault(
+            "hours",
+            "-"
+        )
+
+        r["sleep"].setdefault(
+            "quality",
+            "-"
+        )
+
+
+        r["brain"].setdefault(
+            "adhd_start",
+            "-"
+        )
+
+        r["brain"].setdefault(
+            "focus",
+            "-"
+        )
+
+        r["brain"].setdefault(
+            "flow",
+            "-"
+        )
+
+
+        r["output"].setdefault(
+            "coding",
+            "-"
+        )
+
+        r["output"].setdefault(
+            "study",
+            "-"
+        )
+
+        r["output"].setdefault(
+            "creation",
+            "-"
+        )
+
+
+        r["emotion"].setdefault(
+            "stress",
+            "-"
+        )
+
+        r["emotion"].setdefault(
+            "noise",
+            "-"
+        )
+
+        r["emotion"].setdefault(
+            "stability",
+            "-"
+        )
+
+
+        r["reflection"].setdefault(
+            "win",
+            ""
+        )
+
+        r["reflection"].setdefault(
+            "problem",
+            ""
+        )
+
+        r["reflection"].setdefault(
+            "tomorrow",
+            ""
+        )
+
+
+
     return render_template(
         "records/dashboard.html",
         records=records
@@ -85,159 +154,234 @@ def dashboard():
 
 
 
-
-
 # =====================
 # 新增紀錄
 # =====================
-
 
 @app.route(
     "/records/add",
     methods=["POST"]
 )
-
 def add_record():
 
 
-    collection = get_db()
-
-
-
-    def get_int(name):
-
-        value = request.form.get(name)
-
-        if value == "" or value is None:
-            return None
-
-        return int(value)
-
-
-
-    def get_float(name):
-
-        value = request.form.get(name)
-
-        if value == "" or value is None:
-            return None
-
-        return float(value)
-
-
-
-    record = {
+    data = {
 
 
         "date":
-
         datetime.now()
-        .strftime("%Y-%m-%d"),
+        .strftime(
+            "%Y-%m-%d"
+        ),
 
 
 
         "created_at":
-
         datetime.now(),
 
 
 
         "sleep":
+        {
 
-        get_float("sleep"),
-
-
-
-        "energy":
-
-        get_int("energy"),
-
-
-
-        "focus":
-
-        get_int("focus"),
+            "hours":
+            float(
+                request.form.get(
+                    "sleep"
+                )
+                or 0
+            ),
 
 
+            "quality":
+            int(
+                request.form.get(
+                    "sleep_quality"
+                )
+                or 0
+            )
 
-        "stress":
-
-        get_int("stress"),
-
-
-
-        "emotion":
-
-        request.form.get(
-            "emotion"
-        ),
+        },
 
 
 
         "brain":
-
         {
+
+            "adhd_start":
+            int(
+                request.form.get(
+                    "adhd_start"
+                )
+                or 0
+            ),
+
+
+            "focus":
+            int(
+                request.form.get(
+                    "focus"
+                )
+                or 0
+            ),
+
 
             "flow":
-
-            request.form.get(
-                "flow"
-            ),
-
-
-            "thoughts":
-
-            request.form.get(
-                "thoughts"
+            int(
+                request.form.get(
+                    "flow"
+                )
+                or 0
             )
 
         },
 
 
 
-        "life":
-
+        "body":
         {
 
+            "fatigue":
+            int(
+                request.form.get(
+                    "fatigue"
+                )
+                or 0
+            ),
+
+
             "training":
-
-            request.form.get(
-                "training"
-            ),
-
-
-            "coding":
-
-            request.form.get(
-                "coding"
-            ),
-
-
-            "music":
-
-            request.form.get(
-                "music"
+            int(
+                request.form.get(
+                    "training"
+                )
+                or 0
             )
 
         },
+
+
+
+        "output":
+        {
+
+            "coding":
+            int(
+                request.form.get(
+                    "coding"
+                )
+                or 0
+            ),
+
+
+            "study":
+            int(
+                request.form.get(
+                    "study"
+                )
+                or 0
+            ),
+
+
+            "creation":
+            int(
+                request.form.get(
+                    "creation"
+                )
+                or 0
+            )
+
+        },
+
+
+
+        "emotion":
+        {
+
+            "stress":
+            int(
+                request.form.get(
+                    "stress"
+                )
+                or 0
+            ),
+
+
+            "noise":
+            int(
+                request.form.get(
+                    "noise"
+                )
+                or 0
+            ),
+
+
+            "stability":
+            int(
+                request.form.get(
+                    "emotion"
+                )
+                or 0
+            )
+
+        },
+
+
+
+        "desire":
+        {
+
+            "urge":
+            int(
+                request.form.get(
+                    "urge"
+                )
+                or 0
+            ),
+
+
+            "trigger":
+            request.form.get(
+                "trigger",
+                ""
+            )
+
+        },
+
 
 
         "reflection":
+        {
 
-        request.form.get(
-            "reflection"
-        )
+            "win":
+            request.form.get(
+                "win",
+                ""
+            ),
 
 
+            "problem":
+            request.form.get(
+                "problem",
+                ""
+            ),
+
+
+            "tomorrow":
+            request.form.get(
+                "tomorrow",
+                ""
+            )
+
+        }
 
     }
 
 
 
     collection.insert_one(
-        record
+        data
     )
-
 
 
     return redirect(
@@ -249,126 +393,23 @@ def add_record():
 
 
 # =====================
-# CSV
+# Add page
 # =====================
 
+@app.route("/records/add")
+def add_page():
 
-@app.route(
-    "/records/export"
-)
-
-def export_records():
-
-
-    collection = get_db()
-
-
-    records = collection.find()
-
-
-
-    filename="junos_records.csv"
-
-
-
-    with open(
-        filename,
-        "w",
-        newline="",
-        encoding="utf-8-sig"
-    ) as f:
-
-
-        writer = csv.writer(f)
-
-
-
-        writer.writerow(
-
-            [
-
-            "日期",
-            "時間",
-            "睡眠",
-            "能量",
-            "專注",
-            "壓力",
-            "情緒",
-            "Flow",
-            "想法",
-            "訓練",
-            "Coding",
-            "音樂",
-            "反思"
-
-            ]
-
-        )
-
-
-
-        for r in records:
-
-
-            writer.writerow(
-
-                [
-
-                r.get("date"),
-
-                r.get("created_at"),
-
-
-                r.get("sleep"),
-
-
-                r.get("energy"),
-
-
-                r.get("focus"),
-
-
-                r.get("stress"),
-
-
-                r.get("emotion"),
-
-
-                r.get("brain",{}).get("flow"),
-
-
-                r.get("brain",{}).get("thoughts"),
-
-
-                r.get("life",{}).get("training"),
-
-
-                r.get("life",{}).get("coding"),
-
-
-                r.get("life",{}).get("music"),
-
-
-                r.get("reflection")
-
-                ]
-
-            )
-
-
-
-    return send_file(
-        filename,
-        as_attachment=True
+    return render_template(
+        "records/add.html"
     )
 
 
 
 
+if __name__ == "__main__":
 
 
-
-if __name__=="__main__":
+    init_db()
 
 
     app.run(
