@@ -7,7 +7,10 @@
 
     <title>Relationship System | JunOS</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
   </head>
 
   <body>
@@ -24,13 +27,13 @@
         <ul>
           <li><a href="{{ url_for('index') }}">🏠 首頁</a></li>
 
-          <li><a href="emotion.html">❤️ 情緒</a></li>
+          <li><a href="/pages/emotion">❤️ 情緒</a></li>
 
-          <li><a href="stress.html">😵 壓力</a></li>
+          <li><a href="/pages/stress">😵 壓力</a></li>
 
-          <li><a href="brain.html">🧠 大腦</a></li>
+          <li><a href="/pages/brain">🧠 大腦</a></li>
 
-          <li><a href="desire.html">🔥 衝動</a></li>
+          <li><a href="/pages/desire">🔥 衝動</a></li>
         </ul>
       </aside>
 

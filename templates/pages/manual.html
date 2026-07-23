@@ -7,7 +7,10 @@
 
     <title>JunOS Manual</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
   </head>
 
   <body>
@@ -24,15 +27,15 @@
         <ul>
           <li><a href="{{ url_for('index') }}">🏠 Dashboard</a></li>
 
-          <li><a href="psychology.html">🧠 Psychology</a></li>
+          <li><a href="/pages/psychology">🧠 Psychology</a></li>
 
-          <li><a href="brain.html">🧠 Brain</a></li>
+          <li><a href="/pages/brain">🧠 Brain</a></li>
 
-          <li><a href="adhd.html">💊 ADHD</a></li>
+          <li><a href="/pages/adhd">💊 ADHD</a></li>
 
-          <li><a href="emotion.html">❤️ Emotion</a></li>
+          <li><a href="/pages/emotion">❤️ Emotion</a></li>
 
-          <li><a href="training.html">🏃 Training</a></li>
+          <li><a href="/pages/training">🏃 Training</a></li>
         </ul>
       </aside>
 

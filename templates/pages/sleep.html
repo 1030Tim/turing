@@ -7,7 +7,10 @@
 
     <title>Sleep System | JunOS</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
   </head>
 
   <body>
@@ -24,13 +27,13 @@
         <ul>
           <li><a href="{{ url_for('index') }}">🏠 首頁</a></li>
 
-          <li><a href="brain.html">🧠 大腦設定</a></li>
+          <li><a href="/pages/brain">🧠 大腦設定</a></li>
 
-          <li><a href="adhd.html">💊 ADHD</a></li>
+          <li><a href="/pages/adhd">💊 ADHD</a></li>
 
-          <li><a href="training.html">🏃 訓練</a></li>
+          <li><a href="/pages/training">🏃 訓練</a></li>
 
-          <li><a href="stress.html">😵 壓力</a></li>
+          <li><a href="/pages/stress">😵 壓力</a></li>
         </ul>
       </aside>
 

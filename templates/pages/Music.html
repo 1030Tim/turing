@@ -1,633 +1,332 @@
 <!doctype html>
 <html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music System | JunOS</title>
 
-<title>Music System | JunOS</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
 
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
+  <body>
+    <header>
+      <h1>🎵 Music System</h1>
 
-<body>
+      <p>音樂創作與表達中心</p>
+    </header>
 
-<header>
+    <div class="container">
+      <aside>
+        <h2>📚 System</h2>
 
-<h1>🎵 Music System</h1>
+        <ul>
+          <li><a href="/">🏠 Dashboard</a></li>
 
-<p>
-音樂創作與表達中心
-</p>
+          <li><a href="/pages/brain">🧠 Brain</a></li>
 
-</header>
+          <li><a href="/pages/emotion">❤️ Emotion</a></li>
 
+          <li><a href="/pages/coding">💻 Coding</a></li>
 
-<div class="container">
+          <li><a href="/pages/training">🏃 Training</a></li>
+        </ul>
+      </aside>
 
+      <main>
+        <section class="hero">
+          <h2>音樂不是表演。</h2>
 
-<aside>
+          <p>是把內在經驗轉換成可以被感受的形式。</p>
+        </section>
 
-<h2>📚 System</h2>
+        <section>
+          <h2>🎤 創作流程</h2>
 
-<ul>
+          <div class="grid">
+            <div class="card">
+              <h3>STEP 1 Input</h3>
 
-<li><a href="/">🏠 Dashboard</a></li>
+              <p>
+                收集：
 
-<li><a href="/pages/brain">🧠 Brain</a></li>
+                <br />
 
-<li><a href="/pages/emotion">❤️ Emotion</a></li>
+                情緒
 
-<li><a href="/pages/coding">💻 Coding</a></li>
+                <br />
 
-<li><a href="/pages/training">🏃 Training</a></li>
+                經歷
 
-</ul>
+                <br />
 
-</aside>
+                想法
 
+                <br />
 
+                故事
+              </p>
+            </div>
 
-<main>
+            <div class="card">
+              <h3>STEP 2 Transform</h3>
 
+              <p>
+                把感受轉換：
 
+                <br />
 
-<section class="hero">
+                文字
 
-<h2>
+                <br />
 
-音樂不是表演。
+                旋律
 
-</h2>
+                <br />
 
-<p>
+                Flow
 
-是把內在經驗轉換成可以被感受的形式。
+                <br />
 
-</p>
+                節奏
+              </p>
+            </div>
 
-</section>
+            <div class="card">
+              <h3>STEP 3 Output</h3>
 
+              <p>
+                錄音。
 
+                <br />
 
+                編曲。
 
+                <br />
 
-<section>
+                混音。
 
-<h2>
-🎤 創作流程
-</h2>
+                <br />
 
+                發布。
+              </p>
+            </div>
+          </div>
+        </section>
 
-<div class="grid">
+        <section>
+          <h2>✍️ 歌詞系統</h2>
 
+          <table>
+            <tr>
+              <th>元素</th>
 
-<div class="card">
+              <th>目標</th>
+            </tr>
 
-<h3>
-STEP 1
+            <tr>
+              <td>主題</td>
 
-Input
-</h3>
+              <td>歌曲想傳達的核心</td>
+            </tr>
 
-<p>
+            <tr>
+              <td>故事</td>
 
-收集：
+              <td>讓聽眾理解背景</td>
+            </tr>
 
-<br>
+            <tr>
+              <td>押韻</td>
 
-情緒
+              <td>增加記憶點與節奏感</td>
+            </tr>
 
-<br>
+            <tr>
+              <td>Flow</td>
 
-經歷
+              <td>控制聲音與節拍關係</td>
+            </tr>
 
-<br>
+            <tr>
+              <td>情緒</td>
 
-想法
+              <td>讓文字具有生命</td>
+            </tr>
+          </table>
+        </section>
 
-<br>
+        <section>
+          <h2>🎧 Recording System</h2>
 
-故事
+          <div class="grid">
+            <div class="card">
+              <h3>準備</h3>
 
-</p>
+              <p>
+                確認：
 
-</div>
+                <br />
 
+                Beat
 
+                <br />
 
-<div class="card">
+                Lyrics
 
-<h3>
-STEP 2
+                <br />
 
-Transform
-</h3>
+                Flow
 
-<p>
+                <br />
 
-把感受轉換：
+                情緒狀態
+              </p>
+            </div>
 
-<br>
+            <div class="card">
+              <h3>錄音</h3>
 
-文字
+              <p>
+                不要追求一次完美。
 
-<br>
+                <br />
 
-旋律
+                先留下版本。
+              </p>
+            </div>
 
-<br>
+            <div class="card">
+              <h3>修改</h3>
 
-Flow
+              <p>
+                檢查：
 
-<br>
+                <br />
 
-節奏
+                節奏
 
-</p>
+                <br />
 
-</div>
+                咬字
 
+                <br />
 
+                情緒
+              </p>
+            </div>
+          </div>
+        </section>
 
-<div class="card">
+        <section>
+          <h2>🧠 創作者心理</h2>
 
-<h3>
-STEP 3
+          <div class="grid">
+            <div class="card">
+              <h3>避免完美主義</h3>
 
-Output
-</h3>
+              <p>完成作品比等待完美重要。</p>
+            </div>
 
-<p>
+            <div class="card">
+              <h3>保存靈感</h3>
 
-錄音。
+              <p>想法出現時立即記錄。 不要依靠記憶。</p>
+            </div>
 
-<br>
+            <div class="card">
+              <h3>持續輸出</h3>
 
-編曲。
+              <p>作品數量累積， 能力才會提升。</p>
+            </div>
+          </div>
+        </section>
 
-<br>
+        <section>
+          <h2>🔥 Rap Skill Tree</h2>
 
-混音。
+          <table>
+            <tr>
+              <th>能力</th>
 
-<br>
+              <th>訓練方式</th>
+            </tr>
 
-發布。
+            <tr>
+              <td>押韻</td>
 
-</p>
+              <td>分析歌曲結構、累積韻腳</td>
+            </tr>
 
-</div>
+            <tr>
+              <td>Flow</td>
 
+              <td>跟 Beat 練習節奏變化</td>
+            </tr>
 
-</div>
+            <tr>
+              <td>Delivery</td>
 
-</section>
+              <td>訓練聲音控制與情緒</td>
+            </tr>
 
+            <tr>
+              <td>Writing</td>
 
+              <td>每天寫片段</td>
+            </tr>
+          </table>
+        </section>
 
+        <section>
+          <h2>🎹 音樂工具</h2>
 
+          <div class="card">
+            <p>
+              Logic Pro
 
+              <br /><br />
 
+              Suno
 
-<section>
+              <br /><br />
 
+              錄音設備
 
-<h2>
-✍️ 歌詞系統
-</h2>
+              <br /><br />
 
+              筆記系統
 
-<table>
+              <br /><br />
 
+              AI 輔助創作
+            </p>
+          </div>
+        </section>
 
-<tr>
+        <section>
+          <h2>📌 JunOS Music Rule</h2>
 
-<th>
-元素
-</th>
+          <blockquote>
+            不要等待靈感。
 
-<th>
-目標
-</th>
+            <br /><br />
 
-</tr>
+            創作本身會產生靈感。
 
+            <br /><br />
 
-<tr>
+            輸出，才會進化。
+          </blockquote>
+        </section>
+      </main>
+    </div>
 
-<td>
-主題
-</td>
+    <footer>JunOS v1.0</footer>
 
-<td>
-歌曲想傳達的核心</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-故事
-</td>
-
-<td>
-讓聽眾理解背景</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-押韻
-</td>
-
-<td>
-增加記憶點與節奏感</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-Flow
-</td>
-
-<td>
-控制聲音與節拍關係</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-情緒
-</td>
-
-<td>
-讓文字具有生命</td>
-
-</tr>
-
-
-</table>
-
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-
-<h2>
-🎧 Recording System
-</h2>
-
-
-<div class="grid">
-
-
-<div class="card">
-
-<h3>
-準備
-</h3>
-
-<p>
-
-確認：
-
-<br>
-
-Beat
-
-<br>
-
-Lyrics
-
-<br>
-
-Flow
-
-<br>
-
-情緒狀態
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>
-錄音
-</h3>
-
-<p>
-
-不要追求一次完美。
-
-<br>
-
-先留下版本。
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>
-修改
-</h3>
-
-<p>
-
-檢查：
-
-<br>
-
-節奏
-
-<br>
-
-咬字
-
-<br>
-
-情緒
-
-</p>
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-
-<h2>
-🧠 創作者心理
-</h2>
-
-
-<div class="grid">
-
-
-<div class="card">
-
-<h3>
-避免完美主義
-</h3>
-
-<p>
-
-完成作品比等待完美重要。
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>
-保存靈感
-</h3>
-
-<p>
-
-想法出現時立即記錄。
-
-不要依靠記憶。
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>
-持續輸出
-</h3>
-
-<p>
-
-作品數量累積，
-
-能力才會提升。
-
-</p>
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-
-<h2>
-🔥 Rap Skill Tree
-</h2>
-
-
-<table>
-
-
-<tr>
-
-<th>
-能力
-</th>
-
-<th>
-訓練方式
-</th>
-
-</tr>
-
-
-<tr>
-
-<td>
-押韻
-</td>
-
-<td>
-分析歌曲結構、累積韻腳</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-Flow
-</td>
-
-<td>
-跟 Beat 練習節奏變化</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-Delivery
-</td>
-
-<td>
-訓練聲音控制與情緒</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-Writing
-</td>
-
-<td>
-每天寫片段</td>
-
-</tr>
-
-
-</table>
-
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-
-<h2>
-🎹 音樂工具
-</h2>
-
-
-<div class="card">
-
-<p>
-
-Logic Pro
-
-<br><br>
-
-Suno
-
-<br><br>
-
-錄音設備
-
-<br><br>
-
-筆記系統
-
-<br><br>
-
-AI 輔助創作
-
-</p>
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-
-<h2>
-📌 JunOS Music Rule
-</h2>
-
-
-<blockquote>
-
-不要等待靈感。
-
-<br><br>
-
-創作本身會產生靈感。
-
-<br><br>
-
-輸出，才會進化。
-
-</blockquote>
-
-
-</section>
-
-
-
-</main>
-
-
-</div>
-
-
-
-<footer>
-
-JunOS v1.0
-
-</footer>
-
-
-<script src="{{ url_for('static', filename='script.js') }}"></script>
-
-
-</body>
-
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
 </html>
