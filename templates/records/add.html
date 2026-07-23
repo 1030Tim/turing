@@ -1,391 +1,734 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Add Record | JunOS</title>
-
 <link rel="stylesheet" href="/static/style.css">
-
 </head>
-
 
 <body>
 
-
 <header>
-
 <h1>📝 JunOS Record Input</h1>
-
 <p>捕捉當下狀態，不依靠記憶</p>
-
 </header>
-
-
 
 <div class="container">
 
-
 <main>
 
-
 <section class="hero">
-
 <h2>新增紀錄</h2>
+<p>想到什麼就記錄，一天可以新增很多筆。</p>
+</section>
 
-<p>
-想到什麼就記錄，一天可以多筆。
-</p>
+<form action="/records/add" method="POST">
+
+<div class="grid">
+
+<div class="card">
+<h3>📌 Record</h3>
+
+<label>類型</label>
+<select name="type">
+<option value="daily">🌅 Daily</option>
+<option value="study">📚 Study</option>
+<option value="coding">💻 Coding</option>
+<option value="training">🏃 Training</option>
+<option value="music">🎵 Music</option>
+<option value="idea">💡 Idea</option>
+<option value="emotion">❤️ Emotion</option>
+<option value="reflection">🧠 Reflection</option>
+</select>
+
+<br><br>
+
+<label>標題</label>
+<input
+type="text"
+name="title"
+placeholder="例如：今天開始研究 CNN">
+
+<br><br>
+
+<label>一句話摘要</label>
+<input
+type="text"
+name="summary"
+placeholder="一句話描述這筆紀錄">
+
+</div>
+
+<div class="card">
+
+<h3>😴 Sleep</h3>
+
+<label>睡眠時間 (hours)</label>
+<input
+type="number"
+step="0.1"
+name="sleep">
+
+<br><br>
+
+<label>睡眠品質 (0~100)</label>
+<input
+type="number"
+name="sleep_quality"
+min="0"
+max="100">
+
+<br><br>
+
+<label>醒來精神 (0~100)</label>
+<input
+type="number"
+name="energy"
+min="0"
+max="100">
+
+</div>
+
+<div class="card">
+
+<h3>🧠 Brain</h3>
+
+<label>ADHD 啟動難度</label>
+<input
+type="number"
+name="adhd_start"
+min="0"
+max="100">
+
+<br><br>
+
+<label>專注度 Focus</label>
+<input
+type="number"
+name="focus"
+min="0"
+max="100">
+
+<br><br>
+
+<label>Flow 狀態</label>
+<input
+type="number"
+name="flow"
+min="0"
+max="100">
+
+<br><br>
+
+<label>思緒速度</label>
+<input
+type="number"
+name="thinking_speed"
+min="0"
+max="100">
+
+<br><br>
+
+<label>心理雜訊</label>
+<input
+type="number"
+name="noise"
+min="0"
+max="100">
+
+</div>
+
+<div class="card">
+
+<h3>🏃 Body</h3>
+
+<label>疲勞程度</label>
+<input
+type="number"
+name="fatigue"
+min="0"
+max="100">
+
+<br><br>
+
+<label>訓練品質</label>
+<input
+type="number"
+name="training"
+min="0"
+max="100">
+
+<br><br>
+
+<label>疼痛程度</label>
+<input
+type="number"
+name="pain"
+min="0"
+max="100">
+
+<br><br>
+
+<label>恢復程度</label>
+<input
+type="number"
+name="recovery"
+min="0"
+max="100">
+
+</div>
+
+
+
+<div class="card">
+
+<h3>🚀 Output</h3>
+
+<label>Coding（分鐘）</label>
+<input
+type="number"
+name="coding"
+placeholder="120">
+
+<br><br>
+
+<label>Study（分鐘）</label>
+<input
+type="number"
+name="study"
+placeholder="60">
+
+<br><br>
+
+<label>Research（分鐘）</label>
+<input
+type="number"
+name="research"
+placeholder="30">
+
+<br><br>
+
+<label>Writing（分鐘）</label>
+<input
+type="number"
+name="writing"
+placeholder="20">
+
+<br><br>
+
+<label>Music（分鐘）</label>
+<input
+type="number"
+name="music"
+placeholder="40">
+
+<br><br>
+
+<label>Pole Vault（分鐘）</label>
+<input
+type="number"
+name="polevault"
+placeholder="180">
+
+</div>
+
+
+
+<div class="card">
+
+<h3>❤️ Emotion</h3>
+
+<label>壓力 Stress</label>
+<input
+type="number"
+name="stress"
+min="0"
+max="100">
+
+<br><br>
+
+<label>焦慮 Anxiety</label>
+<input
+type="number"
+name="anxiety"
+min="0"
+max="100">
+
+<br><br>
+
+<label>快樂 Happiness</label>
+<input
+type="number"
+name="happiness"
+min="0"
+max="100">
+
+<br><br>
+
+<label>自信 Confidence</label>
+<input
+type="number"
+name="confidence"
+min="0"
+max="100">
+
+<br><br>
+
+<label>孤單 Loneliness</label>
+<input
+type="number"
+name="loneliness"
+min="0"
+max="100">
+
+</div>
+
+
+
+<div class="card">
+
+<h3>🔥 Desire</h3>
+
+<label>衝動強度</label>
+<input
+type="number"
+name="urge"
+min="0"
+max="100">
+
+<br><br>
+
+<label>觸發原因</label>
+
+<select name="trigger">
+
+<option value="">無</option>
+
+<option>疲勞</option>
+
+<option>壓力</option>
+
+<option>孤單</option>
+
+<option>焦慮</option>
+
+<option>逃避事情</option>
+
+<option>手機</option>
+
+<option>YouTube</option>
+
+<option>Instagram</option>
+
+<option>色情刺激</option>
+
+<option>其他</option>
+
+</select>
+
+<br><br>
+
+<label>是否成功控制</label>
+
+<select name="control">
+
+<option value="yes">✅ 成功</option>
+
+<option value="no">❌ 失敗</option>
+
+</select>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>📱 Digital</h3>
+
+<label>手機使用（分鐘）</label>
+
+<input
+type="number"
+name="phone">
+
+<br><br>
+
+<label>YouTube（分鐘）</label>
+
+<input
+type="number"
+name="youtube">
+
+<br><br>
+
+<label>Shorts（分鐘）</label>
+
+<input
+type="number"
+name="shorts">
+
+<br><br>
+
+<label>社群媒體（分鐘）</label>
+
+<input
+type="number"
+name="social">
+
+</div>
+
+
+
+<div class="card">
+
+<h3>🧠 Thought Log</h3>
+
+<label>
+現在想到什麼？
+</label>
+
+<textarea
+name="thoughts"
+rows="8"
+placeholder="
+例如：
+
+今天寫 Flask + MongoDB
+成功部署到 Render
+
+跳高訓練爆發不足
+需要改善助跑速度
+
+對 AI + 運動分析研究有新想法
+"></textarea>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>🏆 Achievement</h3>
+
+<label>
+今日完成
+</label>
+
+<textarea
+name="achievement"
+rows="6"
+placeholder="
+例如：
+
+完成 JunOS Dashboard
+
+完成 MongoDB Schema 設計
+
+刷完 50 題保險題
+
+完成跳高訓練
+"></textarea>
+
+
+<br><br>
+
+
+<label>
+今日突破
+</label>
+
+<textarea
+name="breakthrough"
+rows="5"
+placeholder="
+今天突破了什麼？
+
+技術突破？
+心理突破？
+訓練突破？
+"></textarea>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>❌ Problem</h3>
+
+<label>
+遇到問題
+</label>
+
+<textarea
+name="problem"
+rows="6"
+placeholder="
+例如：
+
+注意力下降
+
+睡眠不足
+
+程式 bug
+
+訓練狀態不好
+
+情緒波動
+"></textarea>
+
+
+<br><br>
+
+
+<label>
+原因分析</label>
+
+<textarea
+name="cause"
+rows="5"
+placeholder="
+為什麼會發生？
+
+找到根本原因
+"></textarea>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>💡 Insight</h3>
+
+<label>
+今天學到什麼？
+</label>
+
+<textarea
+name="insight"
+rows="6"
+placeholder="
+例如：
+
+Transformer attention
+其實是在學 token 關係
+
+ADHD 不是沒有能力
+而是啟動成本高
+
+"></textarea>
+
+
+<br><br>
+
+
+<label>
+新想法 / 靈感</label>
+
+<textarea
+name="idea"
+rows="6"
+placeholder="
+研究想法
+
+App 功能
+
+音樂創作
+
+人生策略
+"></textarea>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>🎯 Next Action</h3>
+
+<label>
+明天最重要任務</label>
+
+<textarea
+name="next_action"
+rows="5"
+placeholder="
+明天只需要完成什麼？
+
+例如：
+
+完成 Linked List
+
+跑完訓練課表
+
+讀 ML Chapter 3
+"></textarea>
+
+
+<br><br>
+
+
+<label>
+明日調整</label>
+
+<textarea
+name="tomorrow"
+rows="5"
+placeholder="
+明天如何讓系統運作更好？
+"></textarea>
+
+</div>
+
+
+
+<button type="submit">
+💾 保存紀錄
+</button>
+
+
+</form>
+
+</main>
+
+</div>
+
+
+<section>
+
+<h2>
+📈 Recent Records
+</h2>
+
+
+<table>
+
+<tr>
+
+<th>
+Date
+</th>
+
+<th>
+Type
+</th>
+
+<th>
+Title
+</th>
+
+<th>
+Summary
+</th>
+
+<th>
+Output
+</th>
+
+</tr>
+
+
+
+{% for record in records %}
+
+<tr>
+
+<td>
+{{ record.date }}
+</td>
+
+
+<td>
+{{ record.type }}
+</td>
+
+
+<td>
+{{ record.title }}
+</td>
+
+
+<td>
+{{ record.summary }}
+</td>
+
+
+<td>
+
+Coding:
+{{ record.output.coding if record.output else "-" }}
+
+<br>
+
+Study:
+{{ record.output.study if record.output else "-" }}
+
+</td>
+
+
+</tr>
+
+
+{% else %}
+
+
+<tr>
+
+<td colspan="5">
+目前沒有紀錄
+</td>
+
+</tr>
+
+
+{% endfor %}
+
+
+</table>
+
 
 </section>
 
 
 
+<section>
+
+<h2>
+⚙️ JunOS Philosophy
+</h2>
 
 
-<form action="/records/add" method="POST">
+<blockquote>
 
+不要問：
 
-<div class="card">
-
-
-<h3>📌 Record Type</h3>
-
-
-<select name="type">
-
-
-<option value="daily">
-🌅 Daily State
-</option>
-
-
-<option value="training">
-🏃 Training
-</option>
-
-
-<option value="coding">
-💻 Coding
-</option>
-
-
-<option value="study">
-📚 Study
-</option>
-
-
-<option value="music">
-🎵 Music
-</option>
-
-
-<option value="emotion">
-❤️ Emotion
-</option>
-
-
-<option value="reflection">
-🧠 Reflection
-</option>
-
-
-</select>
-
-
-</div>
-
-
-
-
-
-<div class="card">
-
-
-<h3>⚡ System State</h3>
-
-
-<label>
-😴 睡眠時間 (hours)
-</label>
-
-<br>
-
-
-<input
-
-type="number"
-
-step="0.1"
-
-name="sleep"
-
-placeholder="例如 7.5"
-
->
+「我今天有沒有成功？」
 
 
 <br><br>
 
 
+問：
 
-
-<label>
-🔋 Energy 能量 (0-100)
-</label>
-
-<br>
-
-
-<input
-
-type="number"
-
-name="energy"
-
-min="0"
-
-max="100"
-
-placeholder="80"
-
->
+「我的系統今天運作如何？」
 
 
 <br><br>
 
 
+紀錄不是評分自己，
 
+而是蒐集資料，
 
-<label>
-🎯 Focus 專注 (0-100)
-</label>
+找到自己的 Operating Pattern。
 
-<br>
+</blockquote>
 
 
-<input
-
-type="number"
-
-name="focus"
-
-min="0"
-
-max="100"
-
-placeholder="90"
-
->
-
-
-<br><br>
-
-
-
-
-<label>
-😵 Stress 壓力 (0-100)
-</label>
-
-<br>
-
-
-<input
-
-type="number"
-
-name="stress"
-
-min="0"
-
-max="100"
-
-placeholder="30"
-
->
-
-
-</div>
-
-
-
-
-
-
-<div class="card">
-
-
-<h3>🧠 Thought Log</h3>
-
-
-<textarea
-
-name="thoughts"
-
-rows="8"
-
-placeholder="
-現在想到什麼？
-
-例如：
-
-今天寫 Flask + MongoDB
-進入 coding flow
-
-訓練跳高爆發不足
-
-對 AI + 運動研究有新想法
-
-">
-
-</textarea>
-
-
-
-</div>
-
-
-
-
-
-
-
-<div class="card">
-
-
-<h3>🚀 Performance</h3>
-
-
-
-<label>
-
-今日完成 Achievement
-
-</label>
-
-
-<br>
-
-
-<textarea
-
-name="achievement"
-
-rows="5"
-
-placeholder="
-完成什麼？
-
-例如：
-
-完成 MongoDB 部署
-
-完成 YOLO 測試
-
-刷完保險題目
-
-">
-
-</textarea>
-
-
-
-<br><br>
-
-
-
-
-<label>
-
-遇到問題 Problem
-
-</label>
-
-
-<br>
-
-
-<textarea
-
-name="problem"
-
-rows="5"
-
-placeholder="
-卡在哪？
-
-例如：
-
-注意力下降
-
-技術問題
-
-訓練狀態不好
-
-">
-
-</textarea>
-
-
-
-</div>
-
-
-
-
-
-
-
-<div class="card">
-
-
-<h3>💡 Insight</h3>
-
-
-<textarea
-
-name="insight"
-
-rows="5"
-
-placeholder="
-今天學到什麼？
-
-新的想法？
-
-心理觀察？
-
-技術突破？
-
-">
-
-</textarea>
-
-
-
-</div>
-
-
-
-
-
-
-
-<button type="submit">
-
-💾 保存紀錄
-
-</button>
-
-
-
-
-</form>
+</section>
 
 
 
@@ -396,11 +739,9 @@ placeholder="
 
 
 
-
-
 <footer>
 
-JunOS v1.0
+JunOS v2.0
 
 </footer>
 
@@ -410,6 +751,5 @@ JunOS v1.0
 
 
 </body>
-
 
 </html>

@@ -5,13 +5,14 @@ from database import init_db, get_db
 
 app = Flask(__name__)
 
+
 collection = get_db()
 
 
 
-# =====================
-# Home
-# =====================
+# =========================
+# 首頁
+# =========================
 
 @app.route("/")
 def index():
@@ -22,9 +23,10 @@ def index():
 
 
 
-# =====================
+
+# =========================
 # Dashboard
-# =====================
+# =========================
 
 @app.route("/records/dashboard")
 def dashboard():
@@ -39,196 +41,170 @@ def dashboard():
     )
 
 
+    # 防止舊資料格式錯誤
+
     for r in records:
-
-
-        # =====================
-        # 舊資料格式轉換
-        # =====================
 
 
         if not isinstance(
             r.get("sleep"),
             dict
         ):
-
-            old_sleep = r.get(
-                "sleep",
-                "-"
-            )
-
-            r["sleep"] = {
-
-                "hours": old_sleep,
-
-                "quality": "-"
-
-            }
-
+            r["sleep"] = {}
 
 
         if not isinstance(
             r.get("brain"),
             dict
         ):
-
             r["brain"] = {}
-
 
 
         if not isinstance(
             r.get("body"),
             dict
         ):
-
             r["body"] = {}
-
 
 
         if not isinstance(
             r.get("output"),
             dict
         ):
-
             r["output"] = {}
-
 
 
         if not isinstance(
             r.get("emotion"),
             dict
         ):
-
             r["emotion"] = {}
-
 
 
         if not isinstance(
             r.get("desire"),
             dict
         ):
-
             r["desire"] = {}
 
+
+        if not isinstance(
+            r.get("digital"),
+            dict
+        ):
+            r["digital"] = {}
 
 
         if not isinstance(
             r.get("reflection"),
             dict
         ):
-
             r["reflection"] = {}
 
 
 
-
-        # =====================
-        # Default values
-        # =====================
+        # default
 
 
-        r["sleep"].setdefault(
+        for key in [
             "hours",
-            "-"
-        )
-
-        r["sleep"].setdefault(
-            "quality",
-            "-"
-        )
-
+            "quality"
+        ]:
+            r["sleep"].setdefault(
+                key,
+                "-"
+            )
 
 
-        r["brain"].setdefault(
+        for key in [
             "adhd_start",
-            "-"
-        )
-
-        r["brain"].setdefault(
             "focus",
-            "-"
-        )
-
-        r["brain"].setdefault(
-            "flow",
-            "-"
-        )
-
+            "flow"
+        ]:
+            r["brain"].setdefault(
+                key,
+                "-"
+            )
 
 
-        r["body"].setdefault(
+
+        for key in [
             "fatigue",
-            "-"
-        )
-
-        r["body"].setdefault(
             "training",
-            "-"
-        )
+            "pain"
+        ]:
+            r["body"].setdefault(
+                key,
+                "-"
+            )
 
 
 
-        r["output"].setdefault(
+        for key in [
             "coding",
-            "-"
-        )
-
-        r["output"].setdefault(
             "study",
-            "-"
-        )
+            "research",
+            "writing",
+            "music",
+            "polevault"
+        ]:
+            r["output"].setdefault(
+                key,
+                "-"
+            )
 
-        r["output"].setdefault(
-            "creation",
-            "-"
-        )
 
 
-
-        r["emotion"].setdefault(
+        for key in [
             "stress",
-            "-"
-        )
-
-        r["emotion"].setdefault(
-            "noise",
-            "-"
-        )
-
-        r["emotion"].setdefault(
-            "stability",
-            "-"
-        )
+            "anxiety",
+            "happiness",
+            "confidence",
+            "loneliness"
+        ]:
+            r["emotion"].setdefault(
+                key,
+                "-"
+            )
 
 
 
-        r["desire"].setdefault(
+        for key in [
             "urge",
-            "-"
-        )
-
-        r["desire"].setdefault(
             "trigger",
-            "-"
-        )
+            "control"
+        ]:
+            r["desire"].setdefault(
+                key,
+                "-"
+            )
 
 
 
-        r["reflection"].setdefault(
+        for key in [
+            "phone",
+            "youtube",
+            "shorts",
+            "social"
+        ]:
+            r["digital"].setdefault(
+                key,
+                "-"
+            )
+
+
+
+        for key in [
             "win",
-            ""
-        )
-
-        r["reflection"].setdefault(
             "problem",
-            ""
-        )
-
-        r["reflection"].setdefault(
             "tomorrow",
-            ""
-        )
-
+            "achievement",
+            "insight"
+        ]:
+            r["reflection"].setdefault(
+                key,
+                ""
+            )
 
 
 
@@ -242,14 +218,12 @@ def dashboard():
 
 
 
-# =====================
+# =========================
 # Add Page
-# =====================
+# =========================
 
-@app.route(
-    "/records/add",
-    methods=["GET"]
-)
+
+@app.route("/records/add")
 def add_page():
 
 
@@ -263,15 +237,58 @@ def add_page():
 
 
 
-# =====================
+# =========================
 # Add Record
-# =====================
+# =========================
+
 
 @app.route(
     "/records/add",
-    methods=["POST"]
+    methods=[
+        "POST"
+    ]
 )
 def add_record():
+
+
+    now = datetime.now()
+
+
+
+    def get_int(name):
+
+        value = request.form.get(
+            name,
+            ""
+        )
+
+        try:
+
+            return int(value)
+
+        except:
+
+            return 0
+
+
+
+
+    def get_float(name):
+
+        value = request.form.get(
+            name,
+            ""
+        )
+
+        try:
+
+            return float(value)
+
+        except:
+
+            return 0
+
+
 
 
 
@@ -279,16 +296,22 @@ def add_record():
 
 
         "date":
-        datetime.now()
-        .strftime(
+        now.strftime(
             "%Y-%m-%d"
         ),
 
 
 
         "created_at":
-        datetime.now(),
+        now,
 
+
+
+        "type":
+        request.form.get(
+            "type",
+            "daily"
+        ),
 
 
 
@@ -296,24 +319,17 @@ def add_record():
         {
 
             "hours":
-            float(
-                request.form.get(
-                    "sleep"
-                )
-                or 0
+            get_float(
+                "sleep"
             ),
 
 
             "quality":
-            int(
-                request.form.get(
-                    "sleep_quality"
-                )
-                or 0
+            get_int(
+                "sleep_quality"
             )
 
         },
-
 
 
 
@@ -321,33 +337,23 @@ def add_record():
         {
 
             "adhd_start":
-            int(
-                request.form.get(
-                    "adhd_start"
-                )
-                or 0
+            get_int(
+                "adhd_start"
             ),
 
 
             "focus":
-            int(
-                request.form.get(
-                    "focus"
-                )
-                or 0
+            get_int(
+                "focus"
             ),
 
 
             "flow":
-            int(
-                request.form.get(
-                    "flow"
-                )
-                or 0
+            get_int(
+                "flow"
             )
 
         },
-
 
 
 
@@ -355,24 +361,23 @@ def add_record():
         {
 
             "fatigue":
-            int(
-                request.form.get(
-                    "fatigue"
-                )
-                or 0
+            get_int(
+                "fatigue"
             ),
 
 
             "training":
-            int(
-                request.form.get(
-                    "training"
-                )
-                or 0
+            get_int(
+                "training"
+            ),
+
+
+            "pain":
+            get_int(
+                "pain"
             )
 
         },
-
 
 
 
@@ -380,33 +385,41 @@ def add_record():
         {
 
             "coding":
-            int(
-                request.form.get(
-                    "coding"
-                )
-                or 0
+            get_int(
+                "coding"
             ),
 
 
             "study":
-            int(
-                request.form.get(
-                    "study"
-                )
-                or 0
+            get_int(
+                "study"
             ),
 
 
-            "creation":
-            int(
-                request.form.get(
-                    "creation"
-                )
-                or 0
+            "research":
+            get_int(
+                "research"
+            ),
+
+
+            "writing":
+            get_int(
+                "writing"
+            ),
+
+
+            "music":
+            get_int(
+                "music"
+            ),
+
+
+            "polevault":
+            get_int(
+                "polevault"
             )
 
         },
-
 
 
 
@@ -414,33 +427,35 @@ def add_record():
         {
 
             "stress":
-            int(
-                request.form.get(
-                    "stress"
-                )
-                or 0
+            get_int(
+                "stress"
             ),
 
 
-            "noise":
-            int(
-                request.form.get(
-                    "noise"
-                )
-                or 0
+            "anxiety":
+            get_int(
+                "anxiety"
             ),
 
 
-            "stability":
-            int(
-                request.form.get(
-                    "emotion"
-                )
-                or 0
+            "happiness":
+            get_int(
+                "happiness"
+            ),
+
+
+            "confidence":
+            get_int(
+                "confidence"
+            ),
+
+
+            "loneliness":
+            get_int(
+                "loneliness"
             )
 
         },
-
 
 
 
@@ -448,11 +463,8 @@ def add_record():
         {
 
             "urge":
-            int(
-                request.form.get(
-                    "urge"
-                )
-                or 0
+            get_int(
+                "urge"
             ),
 
 
@@ -460,19 +472,69 @@ def add_record():
             request.form.get(
                 "trigger",
                 ""
+            ),
+
+
+            "control":
+            request.form.get(
+                "control",
+                ""
             )
 
         },
 
 
 
+        "digital":
+        {
+
+            "phone":
+            get_int(
+                "phone"
+            ),
+
+
+            "youtube":
+            get_int(
+                "youtube"
+            ),
+
+
+            "shorts":
+            get_int(
+                "shorts"
+            ),
+
+
+            "social":
+            get_int(
+                "social"
+            )
+
+        },
+
+
 
         "reflection":
         {
 
-            "win":
+            "thoughts":
             request.form.get(
-                "win",
+                "thoughts",
+                ""
+            ),
+
+
+            "achievement":
+            request.form.get(
+                "achievement",
+                ""
+            ),
+
+
+            "breakthrough":
+            request.form.get(
+                "breakthrough",
                 ""
             ),
 
@@ -480,6 +542,34 @@ def add_record():
             "problem":
             request.form.get(
                 "problem",
+                ""
+            ),
+
+
+            "cause":
+            request.form.get(
+                "cause",
+                ""
+            ),
+
+
+            "insight":
+            request.form.get(
+                "insight",
+                ""
+            ),
+
+
+            "idea":
+            request.form.get(
+                "idea",
+                ""
+            ),
+
+
+            "next_action":
+            request.form.get(
+                "next_action",
                 ""
             ),
 
@@ -492,8 +582,8 @@ def add_record():
 
         }
 
-    }
 
+    }
 
 
 
@@ -513,27 +603,32 @@ def add_record():
 
 
 
-# =====================
-# Static Pages
-# =====================
+# =========================
+# Pages
+# =========================
 
 
 @app.route("/pages/<name>")
 def pages(name):
 
-    return render_template(
-        f"pages/{name}.html"
-    )
+    try:
+
+        return render_template(
+            f"pages/{name}.html"
+        )
+
+    except:
+
+        return "Page Not Found",404
 
 
 
 
 
-
-
-# =====================
+# =========================
 # Run
-# =====================
+# =========================
+
 
 if __name__ == "__main__":
 

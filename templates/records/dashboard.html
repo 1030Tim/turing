@@ -87,6 +87,28 @@ Personal Brain Operating System
 
 <section class="hero">
 
+
+<h2>
+JunOS Daily Monitor
+</h2>
+
+<p>
+觀察自己的 Operating System，而不是評價自己。
+</p>
+
+
+<a href="/records/add">
+
+<button>
+📝 新增今日紀錄
+</button>
+
+</a>
+
+
+</section>
+
+
 <h2>
 JunOS Daily Monitor
 </h2>
@@ -96,7 +118,6 @@ JunOS Daily Monitor
 觀察自己的 Operating System，而不是評價自己。
 </p>
 
-
 </section>
 
 
@@ -105,9 +126,8 @@ JunOS Daily Monitor
 
 <section>
 
-
 <h2>
-📊 System Overview
+📊 Latest Status
 </h2>
 
 
@@ -121,12 +141,13 @@ JunOS Daily Monitor
 😴 Sleep
 </h3>
 
-
 <p>
-{{records[0].sleep.hours if records else "-"}}
-hours
-</p>
 
+{{records[0].sleep.hours if records else "-"}}
+
+hours
+
+</p>
 
 </div>
 
@@ -140,28 +161,25 @@ hours
 
 
 <p>
+
 Flow:
 
 {{records[0].brain.flow if records else "-"}}
 
 </p>
 
-
 </div>
-
 
 
 
 <div class="card">
 
 <h3>
-💻 Output
+💻 Coding
 </h3>
 
 
 <p>
-
-Coding:
 
 {{records[0].output.coding if records else "-"}}
 
@@ -169,7 +187,6 @@ min
 
 </p>
 
-
 </div>
 
 
@@ -178,28 +195,23 @@ min
 <div class="card">
 
 <h3>
-❤️ Emotion
+❤️ Stress
 </h3>
 
 
 <p>
 
-Stress:
-
 {{records[0].emotion.stress if records else "-"}}
 
 </p>
 
-
 </div>
-
 
 
 </div>
 
 
 </section>
-
 
 
 
@@ -224,26 +236,21 @@ Stress:
 時間
 </th>
 
-
 <th>
 Type
 </th>
-
 
 <th>
 Brain
 </th>
 
-
 <th>
 Output
 </th>
 
-
 <th>
 Emotion
 </th>
-
 
 <th>
 Reflection
@@ -251,6 +258,7 @@ Reflection
 
 
 </tr>
+
 
 
 
@@ -270,16 +278,17 @@ Reflection
 
 
 
+
 <td>
 
-{{record.type | default("daily")}}
+{{record.type}}
 
 </td>
 
 
 
-<td>
 
+<td>
 
 Flow:
 
@@ -288,14 +297,12 @@ Flow:
 
 <br>
 
-
 Focus:
 
 {{record.brain.focus}}
 
 
 <br>
-
 
 ADHD:
 
@@ -327,9 +334,17 @@ Study:
 <br>
 
 
-Creation:
+Research:
 
-{{record.output.creation}}
+{{record.output.research}}
+
+
+<br>
+
+
+Music:
+
+{{record.output.music}}
 
 
 </td>
@@ -349,17 +364,17 @@ Stress:
 <br>
 
 
-Noise:
+Anxiety:
 
-{{record.emotion.noise}}
+{{record.emotion.anxiety}}
 
 
 <br>
 
 
-Stability:
+Confidence:
 
-{{record.emotion.stability}}
+{{record.emotion.confidence}}
 
 
 </td>
@@ -372,27 +387,41 @@ Stability:
 
 
 <b>
-Win:
+Achievement
 </b>
 
 
 <br>
 
-{{record.reflection.win}}
-
+{{record.reflection.achievement}}
 
 
 <br><br>
 
 
+
 <b>
-Problem:
+Problem
 </b>
 
 
 <br>
 
 {{record.reflection.problem}}
+
+
+<br><br>
+
+
+
+<b>
+Insight
+</b>
+
+
+<br>
+
+{{record.reflection.insight}}
 
 
 
@@ -443,24 +472,24 @@ Problem:
 </h2>
 
 
+
 <div class="grid">
 
 
 <div class="card">
 
 <h3>
-低能量
+Low Energy
 </h3>
 
 
 <p>
-
 睡眠不足、壓力高時降低任務難度。
-
 </p>
 
 
 </div>
+
 
 
 
@@ -472,13 +501,13 @@ High Output
 
 
 <p>
-
-Flow 狀態適合 Coding / Research / Training。
-
+Flow 高時安排 Coding、Research、Training。
 </p>
 
 
 </div>
+
+
 
 
 
@@ -490,9 +519,7 @@ Long Term Data
 
 
 <p>
-
-累積資料，找自己的 pattern。
-
+累積資料找到自己的 Pattern。
 </p>
 
 
@@ -506,10 +533,7 @@ Long Term Data
 
 
 
-
-
 </main>
-
 
 </div>
 
@@ -529,6 +553,5 @@ JunOS v3.0
 
 
 </body>
-
 
 </html>
