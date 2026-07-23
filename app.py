@@ -6,7 +6,10 @@ from flask import (
     send_file
 )
 
-from database import init_db, get_db
+from database import (
+    init_db,
+    get_db
+)
 
 from datetime import datetime
 
@@ -17,9 +20,11 @@ import csv
 app = Flask(__name__)
 
 
-# 初始化 MongoDB
+# MongoDB 初始化
 
 init_db()
+
+
 
 
 
@@ -27,13 +32,13 @@ init_db()
 # 首頁
 # =========================
 
-
 @app.route("/")
 def index():
 
     return render_template(
         "index.html"
     )
+
 
 
 
@@ -65,8 +70,9 @@ def pages(page):
 
 
 
+
 # =========================
-# Dashboard
+# Daily Record Dashboard
 # =========================
 
 
@@ -77,13 +83,30 @@ def dashboard():
     collection = get_db()
 
 
+
+    # 最近紀錄
+
     records = list(
+
         collection.find()
+
         .sort(
-            "date",
-            -1
+            [
+                (
+                    "date",
+                    -1
+                ),
+                (
+                    "time",
+                    -1
+                )
+            ]
         )
+
+        .limit(100)
+
     )
+
 
 
     return render_template(
@@ -97,8 +120,10 @@ def dashboard():
 
 
 
+
+
 # =========================
-# 新增紀錄
+# 新增 Event
 # =========================
 
 
@@ -110,23 +135,55 @@ def dashboard():
 def add_record():
 
 
-    collection = get_db()
+    collection=get_db()
 
 
 
-    record = {
+    now=datetime.now()
 
+
+
+    record={
+
+
+        # 日期
 
         "date":
-        datetime.now()
-        .strftime("%Y-%m-%d"),
+        now.strftime(
+            "%Y-%m-%d"
+        ),
 
 
 
-        "sleep":{
+        # 時間
+
+        "time":
+        now.strftime(
+            "%H:%M"
+        ),
 
 
-            "hours":
+
+
+        # 紀錄類型
+
+        "type":
+        request.form.get(
+            "type",
+            "daily"
+        ),
+
+
+
+
+
+        # 身體
+
+        "body":{
+
+
+            "sleep":
+
             float(
                 request.form.get(
                     "sleep",
@@ -135,11 +192,11 @@ def add_record():
             ),
 
 
+            "fatigue":
 
-            "quality":
             int(
                 request.form.get(
-                    "sleep_quality",
+                    "fatigue",
                     0
                 )
             )
@@ -148,20 +205,16 @@ def add_record():
 
 
 
+
+
+
+        # 大腦狀態
+
         "brain":{
 
 
-            "adhd_start":
-            int(
-                request.form.get(
-                    "adhd_start",
-                    0
-                )
-            ),
-
-
-
             "focus":
+
             int(
                 request.form.get(
                     "focus",
@@ -172,41 +225,24 @@ def add_record():
 
 
             "flow":
+
             int(
                 request.form.get(
                     "flow",
-                    0
-                )
-            )
-
-
-        },
-
-
-
-
-
-        "body":{
-
-
-            "fatigue":
-            int(
-                request.form.get(
-                    "fatigue",
                     0
                 )
             ),
 
 
 
-            "training":
+            "adhd_start":
+
             int(
                 request.form.get(
-                    "training",
+                    "adhd_start",
                     0
                 )
             )
-
 
         },
 
@@ -215,10 +251,13 @@ def add_record():
 
 
 
+        # 輸出
+
         "output":{
 
 
             "coding":
+
             int(
                 request.form.get(
                     "coding",
@@ -229,6 +268,7 @@ def add_record():
 
 
             "study":
+
             int(
                 request.form.get(
                     "study",
@@ -238,14 +278,25 @@ def add_record():
 
 
 
-            "creation":
+            "training":
+
             int(
                 request.form.get(
-                    "creation",
+                    "training",
+                    0
+                )
+            ),
+
+
+
+            "music":
+
+            int(
+                request.form.get(
+                    "music",
                     0
                 )
             )
-
 
         },
 
@@ -255,10 +306,13 @@ def add_record():
 
 
 
+        # 情緒
+
         "emotion":{
 
 
             "stress":
+
             int(
                 request.form.get(
                     "stress",
@@ -269,23 +323,13 @@ def add_record():
 
 
             "noise":
+
             int(
                 request.form.get(
                     "noise",
                     0
                 )
-            ),
-
-
-
-            "stability":
-            int(
-                request.form.get(
-                    "emotion",
-                    0
-                )
             )
-
 
         },
 
@@ -295,58 +339,15 @@ def add_record():
 
 
 
-        "desire":{
+        # 文字紀錄
 
+        "note":
 
-            "urge":
-            int(
-                request.form.get(
-                    "urge",
-                    0
-                )
-            ),
+        request.form.get(
+            "note",
+            ""
+        )
 
-
-
-            "trigger":
-            request.form.get(
-                "trigger"
-            )
-
-
-        },
-
-
-
-
-
-
-
-
-        "reflection":{
-
-
-            "win":
-            request.form.get(
-                "win"
-            ),
-
-
-
-            "problem":
-            request.form.get(
-                "problem"
-            ),
-
-
-
-            "tomorrow":
-            request.form.get(
-                "tomorrow"
-            )
-
-
-        }
 
 
     }
@@ -369,8 +370,10 @@ def add_record():
 
 
 
+
+
 # =========================
-# 匯出 CSV
+# CSV Export
 # =========================
 
 
@@ -381,15 +384,16 @@ def add_record():
 def export_records():
 
 
-    collection = get_db()
+    collection=get_db()
 
 
 
-    records = collection.find()
+    records=collection.find()
 
 
 
     filename="junos_records.csv"
+
 
 
 
@@ -402,26 +406,34 @@ def export_records():
 
 
 
-        writer = csv.writer(f)
+        writer=csv.writer(f)
 
 
 
         writer.writerow(
             [
-                "date",
-                "sleep",
-                "focus",
-                "flow",
-                "coding",
-                "study",
-                "stress",
-                "win"
+                "日期",
+                "時間",
+                "類型",
+                "睡眠",
+                "疲勞",
+                "專注",
+                "Flow",
+                "Coding",
+                "Study",
+                "Training",
+                "Music",
+                "壓力",
+                "紀錄"
             ]
         )
 
 
 
+
+
         for r in records:
+
 
 
             writer.writerow(
@@ -432,10 +444,30 @@ def export_records():
                     ),
 
 
-                    r["sleep"]
-                    .get(
-                        "hours"
+                    r.get(
+                        "time"
                     ),
+
+
+
+                    r.get(
+                        "type"
+                    ),
+
+
+
+                    r["body"]
+                    .get(
+                        "sleep"
+                    ),
+
+
+
+                    r["body"]
+                    .get(
+                        "fatigue"
+                    ),
+
 
 
                     r["brain"]
@@ -444,10 +476,12 @@ def export_records():
                     ),
 
 
+
                     r["brain"]
                     .get(
                         "flow"
                     ),
+
 
 
                     r["output"]
@@ -456,10 +490,26 @@ def export_records():
                     ),
 
 
+
                     r["output"]
                     .get(
                         "study"
                     ),
+
+
+
+                    r["output"]
+                    .get(
+                        "training"
+                    ),
+
+
+
+                    r["output"]
+                    .get(
+                        "music"
+                    ),
+
 
 
                     r["emotion"]
@@ -468,9 +518,9 @@ def export_records():
                     ),
 
 
-                    r["reflection"]
-                    .get(
-                        "win"
+
+                    r.get(
+                        "note"
                     )
 
                 ]
@@ -488,6 +538,14 @@ def export_records():
 
 
 
+
+
+
+
+
+# =========================
+# Run
+# =========================
 
 
 if __name__=="__main__":
