@@ -813,3 +813,56 @@ table {
 
 
 }
+
+.container{
+    display:flex;
+    gap:30px;
+    max-width:1400px;
+    margin:auto;
+}
+
+
+aside{
+    width:220px;
+    flex-shrink:0;
+}
+
+
+main{
+    flex:1;
+}
+
+
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(300px,1fr));
+
+    gap:20px;
+
+}
+
+
+
+.card{
+
+    padding:20px;
+
+    border-radius:15px;
+
+}
+
+
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    box-sizing:border-box;
+
+}
