@@ -517,7 +517,6 @@ rows="3">
 
 <section>
 
-
 <h2>
 📈 Historical Data
 </h2>
@@ -525,46 +524,37 @@ rows="3">
 
 <table>
 
-
 <tr>
 
 <th>
 日期
 </th>
 
-
 <th>
-Sleep
+😴 Sleep
 </th>
 
-
 <th>
-Brain
+🧠 Brain
 </th>
 
-
 <th>
-Output
+🚀 Output
 </th>
 
-
 <th>
-Emotion
+❤️ Emotion
 </th>
 
-
 <th>
-Reflection
+📌 Reflection
 </th>
-
 
 </tr>
 
 
 
-
 {% for record in records %}
-
 
 
 <tr>
@@ -580,21 +570,34 @@ Reflection
 
 <td>
 
+睡眠:
 {{record.sleep.hours}}
+hr
+
+<br>
+
+品質:
+{{record.sleep.quality}}
 
 </td>
 
 
 
+
 <td>
 
-Flow:
-{{record.brain.flow}}
+ADHD:
+{{record.brain.adhd_start}}
 
 <br>
 
 Focus:
 {{record.brain.focus}}
+
+<br>
+
+Flow:
+{{record.brain.flow}}
 
 </td>
 
@@ -605,11 +608,19 @@ Focus:
 
 Coding:
 {{record.output.coding}}
+min
 
 <br>
 
 Study:
 {{record.output.study}}
+min
+
+<br>
+
+Creation:
+{{record.output.creation}}
+min
 
 </td>
 
@@ -621,24 +632,49 @@ Study:
 Stress:
 {{record.emotion.stress}}
 
+<br>
+
+Noise:
+{{record.emotion.noise}}
+
+<br>
+
+Stability:
+{{record.emotion.stability}}
+
 </td>
+
 
 
 
 <td>
 
+勝利:
+
 {{record.reflection.win}}
 
+<br><br>
+
+
+問題:
+
+{{record.reflection.problem}}
+
+<br><br>
+
+
+明日:
+
+{{record.reflection.tomorrow}}
+
 </td>
+
 
 
 </tr>
 
 
-
-
 {% else %}
-
 
 
 <tr>
@@ -652,13 +688,10 @@ Stress:
 </tr>
 
 
-
 {% endfor %}
 
 
-
 </table>
-
 
 
 </section>

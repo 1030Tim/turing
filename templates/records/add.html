@@ -33,7 +33,6 @@
 <main>
 
 
-
 <section class="hero">
 
 <h2>新增紀錄</h2>
@@ -49,9 +48,6 @@
 
 
 <form action="/records/add" method="POST">
-
-
-
 
 
 <div class="card">
@@ -98,18 +94,10 @@
 </option>
 
 
-<option value="research">
-🔬 Research
-</option>
-
-
 </select>
 
 
-
 </div>
-
-
 
 
 
@@ -121,11 +109,9 @@
 <h3>⚡ System State</h3>
 
 
-
 <label>
-😴 睡眠 Sleep (hours)
+😴 睡眠時間 (hours)
 </label>
-
 
 <br>
 
@@ -143,17 +129,14 @@ placeholder="例如 7.5"
 >
 
 
-
 <br><br>
 
 
 
 
-
 <label>
-🔋 能量 Energy (0-100)
+🔋 Energy 能量 (0-100)
 </label>
-
 
 <br>
 
@@ -168,10 +151,9 @@ min="0"
 
 max="100"
 
-placeholder="例如 80"
+placeholder="80"
 
 >
-
 
 
 <br><br>
@@ -179,11 +161,9 @@ placeholder="例如 80"
 
 
 
-
 <label>
-🎯 專注 Focus (0-100)
+🎯 Focus 專注 (0-100)
 </label>
-
 
 <br>
 
@@ -198,10 +178,9 @@ min="0"
 
 max="100"
 
-placeholder="例如 90"
+placeholder="90"
 
 >
-
 
 
 <br><br>
@@ -209,11 +188,9 @@ placeholder="例如 90"
 
 
 
-
 <label>
-😵 壓力 Stress (0-100)
+😵 Stress 壓力 (0-100)
 </label>
-
 
 <br>
 
@@ -228,14 +205,12 @@ min="0"
 
 max="100"
 
-placeholder="例如 30"
+placeholder="30"
 
 >
 
 
-
 </div>
-
 
 
 
@@ -246,7 +221,6 @@ placeholder="例如 30"
 
 
 <h3>🧠 Thought Log</h3>
-
 
 
 <textarea
@@ -263,11 +237,9 @@ placeholder="
 今天寫 Flask + MongoDB
 進入 coding flow
 
-跳高訓練：
-起跳速度不足
+訓練跳高爆發不足
 
-心理：
-發現自己的壓力來源
+對 AI + 運動研究有新想法
 
 ">
 
@@ -286,7 +258,7 @@ placeholder="
 <div class="card">
 
 
-<h3>🎯 Performance</h3>
+<h3>🚀 Performance</h3>
 
 
 
@@ -300,7 +272,6 @@ placeholder="
 <br>
 
 
-
 <textarea
 
 name="achievement"
@@ -308,11 +279,15 @@ name="achievement"
 rows="5"
 
 placeholder="
-今天完成：
+完成什麼？
 
-- MongoDB 部署成功
-- 完成研究資料整理
-- 訓練跳高
+例如：
+
+完成 MongoDB 部署
+
+完成 YOLO 測試
+
+刷完保險題目
 
 ">
 
@@ -320,10 +295,7 @@ placeholder="
 
 
 
-
-
 <br><br>
-
 
 
 
@@ -338,7 +310,6 @@ placeholder="
 <br>
 
 
-
 <textarea
 
 name="problem"
@@ -346,11 +317,15 @@ name="problem"
 rows="5"
 
 placeholder="
-今天卡在哪：
+卡在哪？
 
-- 注意力下降
-- Debug 太久
-- 身體疲勞
+例如：
+
+注意力下降
+
+技術問題
+
+訓練狀態不好
 
 ">
 
@@ -372,7 +347,6 @@ placeholder="
 <h3>💡 Insight</h3>
 
 
-
 <textarea
 
 name="insight"
@@ -380,15 +354,13 @@ name="insight"
 rows="5"
 
 placeholder="
-今天最大的理解：
+今天學到什麼？
 
-例如：
+新的想法？
 
-MongoDB 比 SQLite 更適合非固定資料
+心理觀察？
 
-或：
-
-壓力不是問題，沒有輸出管道才是問題
+技術突破？
 
 ">
 
@@ -406,17 +378,14 @@ MongoDB 比 SQLite 更適合非固定資料
 
 <button type="submit">
 
-保存紀錄
+💾 保存紀錄
 
 </button>
 
 
 
 
-
 </form>
-
-
 
 
 
@@ -438,7 +407,6 @@ JunOS v1.0
 
 
 <script src="/static/script.js"></script>
-
 
 
 </body>
