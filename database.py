@@ -9,27 +9,19 @@ load_dotenv()
 MONGO_URI = os.getenv("MONGO_URI")
 
 
-client = None
+client = MongoClient(MONGO_URI)
+
+
+db = client["JunOS"]
+
+
+records_collection = db["records"]
 
 
 
 def get_db():
 
-    global client
-
-
-    if client is None:
-
-        client = MongoClient(
-            MONGO_URI
-        )
-
-
-    db = client["junos"]
-
-
-    return db["records"]
-
+    return records_collection
 
 
 
