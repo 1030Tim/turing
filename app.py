@@ -5,7 +5,6 @@ from database import init_db, get_db
 
 app = Flask(__name__)
 
-
 collection = get_db()
 
 
@@ -24,7 +23,7 @@ def index():
 
 
 # =====================
-# Daily Record Dashboard
+# Dashboard
 # =====================
 
 @app.route("/records/dashboard")
@@ -40,49 +39,93 @@ def dashboard():
     )
 
 
-    # 防止舊資料缺少欄位
-
     for r in records:
 
 
-        r.setdefault(
-            "sleep",
-            {}
-        )
+        # =====================
+        # 舊資料格式轉換
+        # =====================
 
-        r.setdefault(
-            "brain",
-            {}
-        )
 
-        r.setdefault(
-            "body",
-            {}
-        )
+        if not isinstance(
+            r.get("sleep"),
+            dict
+        ):
 
-        r.setdefault(
-            "output",
-            {}
-        )
+            old_sleep = r.get(
+                "sleep",
+                "-"
+            )
 
-        r.setdefault(
-            "emotion",
-            {}
-        )
+            r["sleep"] = {
 
-        r.setdefault(
-            "desire",
-            {}
-        )
+                "hours": old_sleep,
 
-        r.setdefault(
-            "reflection",
-            {}
-        )
+                "quality": "-"
+
+            }
 
 
 
-        # sleep
+        if not isinstance(
+            r.get("brain"),
+            dict
+        ):
+
+            r["brain"] = {}
+
+
+
+        if not isinstance(
+            r.get("body"),
+            dict
+        ):
+
+            r["body"] = {}
+
+
+
+        if not isinstance(
+            r.get("output"),
+            dict
+        ):
+
+            r["output"] = {}
+
+
+
+        if not isinstance(
+            r.get("emotion"),
+            dict
+        ):
+
+            r["emotion"] = {}
+
+
+
+        if not isinstance(
+            r.get("desire"),
+            dict
+        ):
+
+            r["desire"] = {}
+
+
+
+        if not isinstance(
+            r.get("reflection"),
+            dict
+        ):
+
+            r["reflection"] = {}
+
+
+
+
+        # =====================
+        # Default values
+        # =====================
+
 
         r["sleep"].setdefault(
             "hours",
@@ -95,8 +138,6 @@ def dashboard():
         )
 
 
-
-        # brain
 
         r["brain"].setdefault(
             "adhd_start",
@@ -115,8 +156,6 @@ def dashboard():
 
 
 
-        # body
-
         r["body"].setdefault(
             "fatigue",
             "-"
@@ -128,8 +167,6 @@ def dashboard():
         )
 
 
-
-        # output
 
         r["output"].setdefault(
             "coding",
@@ -148,8 +185,6 @@ def dashboard():
 
 
 
-        # emotion
-
         r["emotion"].setdefault(
             "stress",
             "-"
@@ -167,8 +202,6 @@ def dashboard():
 
 
 
-        # desire
-
         r["desire"].setdefault(
             "urge",
             "-"
@@ -180,8 +213,6 @@ def dashboard():
         )
 
 
-
-        # reflection
 
         r["reflection"].setdefault(
             "win",
@@ -200,6 +231,7 @@ def dashboard():
 
 
 
+
     return render_template(
         "records/dashboard.html",
         records=records
@@ -209,8 +241,9 @@ def dashboard():
 
 
 
+
 # =====================
-# Add Record Page
+# Add Page
 # =====================
 
 @app.route(
@@ -228,8 +261,10 @@ def add_page():
 
 
 
+
+
 # =====================
-# Add Record API
+# Add Record
 # =====================
 
 @app.route(
@@ -256,6 +291,7 @@ def add_record():
 
 
 
+
         "sleep":
         {
 
@@ -277,6 +313,7 @@ def add_record():
             )
 
         },
+
 
 
 
@@ -313,6 +350,7 @@ def add_record():
 
 
 
+
         "body":
         {
 
@@ -334,6 +372,7 @@ def add_record():
             )
 
         },
+
 
 
 
@@ -370,6 +409,7 @@ def add_record():
 
 
 
+
         "emotion":
         {
 
@@ -403,6 +443,7 @@ def add_record():
 
 
 
+
         "desire":
         {
 
@@ -422,6 +463,7 @@ def add_record():
             )
 
         },
+
 
 
 
@@ -454,6 +496,7 @@ def add_record():
 
 
 
+
     collection.insert_one(
         data
     )
@@ -469,62 +512,19 @@ def add_record():
 
 
 
+
 # =====================
-# Pages
+# Static Pages
 # =====================
 
 
-@app.route("/pages/brain")
-def brain():
+@app.route("/pages/<name>")
+def pages(name):
 
     return render_template(
-        "pages/brain.html"
+        f"pages/{name}.html"
     )
 
-
-
-@app.route("/pages/focus")
-def focus():
-
-    return render_template(
-        "pages/focus.html"
-    )
-
-
-
-@app.route("/pages/emotion")
-def emotion():
-
-    return render_template(
-        "pages/emotion.html"
-    )
-
-
-
-@app.route("/pages/desire")
-def desire():
-
-    return render_template(
-        "pages/desire.html"
-    )
-
-
-
-@app.route("/pages/manual")
-def manual():
-
-    return render_template(
-        "pages/manual.html"
-    )
-
-
-
-@app.route("/pages/startup")
-def startup():
-
-    return render_template(
-        "pages/startup.html"
-    )
 
 
 
