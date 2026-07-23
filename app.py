@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 
 # =========================
-# Database Manager
+# Database
 # =========================
 
 collection = get_db()
@@ -21,7 +21,7 @@ daily_manager = DailyManager(
 
 
 # =========================
-# 首頁
+# Home
 # =========================
 
 @app.route("/")
@@ -41,7 +41,10 @@ def index():
 def dashboard():
 
 
+    # 取得每日合併後資料
+
     records = daily_manager.get_records()
+
 
 
     return render_template(
@@ -58,9 +61,10 @@ def dashboard():
 @app.route("/records/add")
 def add_page():
 
+
     return render_template(
         "records/add.html",
-        records=[]
+        records=daily_manager.get_records()
     )
 
 
@@ -116,6 +120,7 @@ def add_record():
 
 
 
+
     data = {
 
 
@@ -127,6 +132,11 @@ def add_record():
 
 
         "created_at":
+        now,
+
+
+
+        "updated_at":
         now,
 
 
@@ -155,6 +165,7 @@ def add_record():
 
 
 
+
         "sleep":
         {
 
@@ -170,6 +181,7 @@ def add_record():
             )
 
         },
+
 
 
 
@@ -209,6 +221,7 @@ def add_record():
 
 
 
+
         "body":
         {
 
@@ -236,6 +249,7 @@ def add_record():
             )
 
         },
+
 
 
 
@@ -281,6 +295,7 @@ def add_record():
 
 
 
+
         "emotion":
         {
 
@@ -317,6 +332,7 @@ def add_record():
 
 
 
+
         "desire":
         {
 
@@ -340,6 +356,7 @@ def add_record():
             )
 
         },
+
 
 
 
@@ -370,6 +387,7 @@ def add_record():
             )
 
         },
+
 
 
 
@@ -444,6 +462,9 @@ def add_record():
 
 
 
+
+    # 使用 DailyManager 處理合併
+
     daily_manager.insert(
         data
     )
@@ -456,14 +477,16 @@ def add_record():
 
 
 
+
 # =========================
-# Pages
+# Static Pages
 # =========================
 
 @app.route(
     "/pages/<name>"
 )
 def pages(name):
+
 
     try:
 
@@ -474,10 +497,12 @@ def pages(name):
 
     except Exception:
 
+
         return (
             "Page Not Found",
             404
         )
+
 
 
 

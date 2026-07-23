@@ -1,115 +1,52 @@
 from pymongo import MongoClient
-from dotenv import load_dotenv
 import os
 
 
-
-# =========================
-# Load Environment Variable
-# =========================
-
-load_dotenv()
-
-
-
-MONGO_URI = os.getenv(
-    "MONGO_URI"
-)
-
-
-
-if not MONGO_URI:
-
-    raise ValueError(
-        "MONGO_URI 未設定，請確認 .env 或 Render Environment Variables"
-    )
-
-
-
-
-
-# =========================
-# MongoDB Connection
-# =========================
-
-
-client = MongoClient(
-    MONGO_URI,
-
-    serverSelectionTimeoutMS=5000
-)
-
-
-
-
-
-# =========================
-# Database
-# =========================
-
-
-db = client["JunOS"]
-
-
-
-
-
-# =========================
-# Collection
-# =========================
-
-
-records_collection = db["records"]
-
-
-
-
-
-
-
-
-
-# =========================
-# Initialize Database
-# =========================
+client = None
+db = None
 
 
 def init_db():
 
-    try:
+    global client
+    global db
 
-        client.admin.command(
-            "ping"
+
+    mongo_url = os.environ.get(
+        "MONGO_URI"
+    )
+
+
+    if mongo_url:
+
+        client = MongoClient(
+            mongo_url
+        )
+
+    else:
+
+        client = MongoClient(
+            "mongodb://localhost:27017/"
         )
 
 
-        print(
-            "MongoDB connected"
-        )
+    db = client["JunOS"]
 
 
-    except Exception as e:
+    print(
+        "MongoDB connected"
+    )
 
-
-        print(
-            "MongoDB connection failed:"
-        )
-
-        print(e)
-
-
-
-
-
-
-
-
-
-# =========================
-# Get Collection
-# =========================
 
 
 def get_db():
 
-    return records_collection
+    global db
+
+
+    if db is None:
+
+        init_db()
+
+
+    return db["daily_records"]
