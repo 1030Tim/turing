@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from datetime import datetime
 from database import init_db, get_db
-import os
 
 
 app = Flask(__name__)
@@ -10,8 +9,9 @@ app = Flask(__name__)
 collection = get_db()
 
 
+
 # =====================
-# 首頁
+# Home
 # =====================
 
 @app.route("/")
@@ -40,36 +40,49 @@ def dashboard():
     )
 
 
-    # 防止舊資料缺欄位
+    # 防止舊資料缺少欄位
+
     for r in records:
 
 
-        if "sleep" not in r:
-            r["sleep"] = {}
+        r.setdefault(
+            "sleep",
+            {}
+        )
+
+        r.setdefault(
+            "brain",
+            {}
+        )
+
+        r.setdefault(
+            "body",
+            {}
+        )
+
+        r.setdefault(
+            "output",
+            {}
+        )
+
+        r.setdefault(
+            "emotion",
+            {}
+        )
+
+        r.setdefault(
+            "desire",
+            {}
+        )
+
+        r.setdefault(
+            "reflection",
+            {}
+        )
 
 
-        if "brain" not in r:
-            r["brain"] = {}
 
-
-        if "body" not in r:
-            r["body"] = {}
-
-
-        if "output" not in r:
-            r["output"] = {}
-
-
-        if "emotion" not in r:
-            r["emotion"] = {}
-
-
-        if "reflection" not in r:
-            r["reflection"] = {}
-
-
-
-        # 預設值
+        # sleep
 
         r["sleep"].setdefault(
             "hours",
@@ -81,6 +94,9 @@ def dashboard():
             "-"
         )
 
+
+
+        # brain
 
         r["brain"].setdefault(
             "adhd_start",
@@ -98,6 +114,23 @@ def dashboard():
         )
 
 
+
+        # body
+
+        r["body"].setdefault(
+            "fatigue",
+            "-"
+        )
+
+        r["body"].setdefault(
+            "training",
+            "-"
+        )
+
+
+
+        # output
+
         r["output"].setdefault(
             "coding",
             "-"
@@ -114,6 +147,9 @@ def dashboard():
         )
 
 
+
+        # emotion
+
         r["emotion"].setdefault(
             "stress",
             "-"
@@ -129,6 +165,23 @@ def dashboard():
             "-"
         )
 
+
+
+        # desire
+
+        r["desire"].setdefault(
+            "urge",
+            "-"
+        )
+
+        r["desire"].setdefault(
+            "trigger",
+            "-"
+        )
+
+
+
+        # reflection
 
         r["reflection"].setdefault(
             "win",
@@ -154,8 +207,29 @@ def dashboard():
 
 
 
+
+
 # =====================
-# 新增紀錄
+# Add Record Page
+# =====================
+
+@app.route(
+    "/records/add",
+    methods=["GET"]
+)
+def add_page():
+
+
+    return render_template(
+        "records/add.html"
+    )
+
+
+
+
+
+# =====================
+# Add Record API
 # =====================
 
 @app.route(
@@ -163,6 +237,7 @@ def dashboard():
     methods=["POST"]
 )
 def add_record():
+
 
 
     data = {
@@ -384,6 +459,7 @@ def add_record():
     )
 
 
+
     return redirect(
         "/records/dashboard"
     )
@@ -392,19 +468,72 @@ def add_record():
 
 
 
+
 # =====================
-# Add page
+# Pages
 # =====================
 
-@app.route("/records/add")
-def add_page():
+
+@app.route("/pages/brain")
+def brain():
 
     return render_template(
-        "records/add.html"
+        "pages/brain.html"
     )
 
 
 
+@app.route("/pages/focus")
+def focus():
+
+    return render_template(
+        "pages/focus.html"
+    )
+
+
+
+@app.route("/pages/emotion")
+def emotion():
+
+    return render_template(
+        "pages/emotion.html"
+    )
+
+
+
+@app.route("/pages/desire")
+def desire():
+
+    return render_template(
+        "pages/desire.html"
+    )
+
+
+
+@app.route("/pages/manual")
+def manual():
+
+    return render_template(
+        "pages/manual.html"
+    )
+
+
+
+@app.route("/pages/startup")
+def startup():
+
+    return render_template(
+        "pages/startup.html"
+    )
+
+
+
+
+
+
+# =====================
+# Run
+# =====================
 
 if __name__ == "__main__":
 
