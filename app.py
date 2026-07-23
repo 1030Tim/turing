@@ -17,13 +17,16 @@ import csv
 app = Flask(__name__)
 
 
+# 初始化 MongoDB
+
 init_db()
 
 
 
-# ======================
+# =========================
 # 首頁
-# ======================
+# =========================
+
 
 @app.route("/")
 def index():
@@ -34,9 +37,12 @@ def index():
 
 
 
-# ======================
-# pages
-# ======================
+
+
+# =========================
+# 靜態 pages
+# =========================
+
 
 @app.route("/pages/<page>")
 def pages(page):
@@ -47,27 +53,34 @@ def pages(page):
             f"pages/{page}.html"
         )
 
-    except:
+    except Exception as e:
+
+        print(e)
 
         return "Page Not Found",404
 
 
 
 
-# ======================
+
+
+
+# =========================
 # Dashboard
-# ======================
+# =========================
+
 
 @app.route("/records/dashboard")
 def dashboard():
 
-    records_collection = get_db()
+
+    collection = get_db()
 
 
     records = list(
-        records_collection.find()
+        collection.find()
         .sort(
-            "_id",
+            "date",
             -1
         )
     )
@@ -82,9 +95,12 @@ def dashboard():
 
 
 
-# ======================
+
+
+# =========================
 # 新增紀錄
-# ======================
+# =========================
+
 
 @app.route(
     "/records/add",
@@ -93,58 +109,245 @@ def dashboard():
 
 def add_record():
 
+
     collection = get_db()
 
 
 
     record = {
 
+
         "date":
         datetime.now()
         .strftime("%Y-%m-%d"),
 
 
-        "sleep":
-        float(
-            request.form.get(
-                "sleep",
-                0
+
+        "sleep":{
+
+
+            "hours":
+            float(
+                request.form.get(
+                    "sleep",
+                    0
+                )
+            ),
+
+
+
+            "quality":
+            int(
+                request.form.get(
+                    "sleep_quality",
+                    0
+                )
             )
-        ),
+
+        },
 
 
-        "energy":
-        int(
-            request.form.get(
-                "energy",
-                0
+
+        "brain":{
+
+
+            "adhd_start":
+            int(
+                request.form.get(
+                    "adhd_start",
+                    0
+                )
+            ),
+
+
+
+            "focus":
+            int(
+                request.form.get(
+                    "focus",
+                    0
+                )
+            ),
+
+
+
+            "flow":
+            int(
+                request.form.get(
+                    "flow",
+                    0
+                )
             )
-        ),
 
 
-        "focus":
-        int(
-            request.form.get(
-                "focus",
-                0
+        },
+
+
+
+
+
+        "body":{
+
+
+            "fatigue":
+            int(
+                request.form.get(
+                    "fatigue",
+                    0
+                )
+            ),
+
+
+
+            "training":
+            int(
+                request.form.get(
+                    "training",
+                    0
+                )
             )
-        ),
 
 
-        "stress":
-        int(
-            request.form.get(
-                "stress",
-                0
+        },
+
+
+
+
+
+
+        "output":{
+
+
+            "coding":
+            int(
+                request.form.get(
+                    "coding",
+                    0
+                )
+            ),
+
+
+
+            "study":
+            int(
+                request.form.get(
+                    "study",
+                    0
+                )
+            ),
+
+
+
+            "creation":
+            int(
+                request.form.get(
+                    "creation",
+                    0
+                )
             )
-        ),
 
 
-        "thoughts":
-        request.form.get(
-            "thoughts",
-            ""
-        )
+        },
+
+
+
+
+
+
+
+        "emotion":{
+
+
+            "stress":
+            int(
+                request.form.get(
+                    "stress",
+                    0
+                )
+            ),
+
+
+
+            "noise":
+            int(
+                request.form.get(
+                    "noise",
+                    0
+                )
+            ),
+
+
+
+            "stability":
+            int(
+                request.form.get(
+                    "emotion",
+                    0
+                )
+            )
+
+
+        },
+
+
+
+
+
+
+
+        "desire":{
+
+
+            "urge":
+            int(
+                request.form.get(
+                    "urge",
+                    0
+                )
+            ),
+
+
+
+            "trigger":
+            request.form.get(
+                "trigger"
+            )
+
+
+        },
+
+
+
+
+
+
+
+
+        "reflection":{
+
+
+            "win":
+            request.form.get(
+                "win"
+            ),
+
+
+
+            "problem":
+            request.form.get(
+                "problem"
+            ),
+
+
+
+            "tomorrow":
+            request.form.get(
+                "tomorrow"
+            )
+
+
+        }
+
 
     }
 
@@ -165,9 +368,11 @@ def add_record():
 
 
 
-# ======================
-# CSV Export
-# ======================
+
+# =========================
+# 匯出 CSV
+# =========================
+
 
 @app.route(
     "/records/export"
@@ -196,17 +401,21 @@ def export_records():
     ) as f:
 
 
+
         writer = csv.writer(f)
+
 
 
         writer.writerow(
             [
-                "日期",
-                "睡眠",
-                "能量",
-                "專注",
-                "壓力",
-                "內耗"
+                "date",
+                "sleep",
+                "focus",
+                "flow",
+                "coding",
+                "study",
+                "stress",
+                "win"
             ]
         )
 
@@ -217,14 +426,57 @@ def export_records():
 
             writer.writerow(
                 [
-                    r.get("date"),
-                    r.get("sleep"),
-                    r.get("energy"),
-                    r.get("focus"),
-                    r.get("stress"),
-                    r.get("thoughts")
+
+                    r.get(
+                        "date"
+                    ),
+
+
+                    r["sleep"]
+                    .get(
+                        "hours"
+                    ),
+
+
+                    r["brain"]
+                    .get(
+                        "focus"
+                    ),
+
+
+                    r["brain"]
+                    .get(
+                        "flow"
+                    ),
+
+
+                    r["output"]
+                    .get(
+                        "coding"
+                    ),
+
+
+                    r["output"]
+                    .get(
+                        "study"
+                    ),
+
+
+                    r["emotion"]
+                    .get(
+                        "stress"
+                    ),
+
+
+                    r["reflection"]
+                    .get(
+                        "win"
+                    )
+
                 ]
             )
+
+
 
 
 

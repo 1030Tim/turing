@@ -1,221 +1,723 @@
 <!doctype html>
 <html lang="zh-TW">
-  <head>
-    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
 
-    <title>Daily Record | JunOS</title>
+<meta charset="UTF-8">
 
-    <link rel="stylesheet" href="/static/style.css" />
-  </head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <body>
-    <header>
-      <h1>📊 Daily Record System</h1>
+<title>JunOS Daily Record</title>
 
-      <p>JunOS 個人狀態追蹤中心</p>
-    </header>
+<link rel="stylesheet" href="/static/style.css">
 
-    <div class="container">
-      <aside>
-        <h2>📚 System</h2>
+</head>
 
-        <ul>
-          <li>
-            <a href="/">🏠 Dashboard</a>
-          </li>
 
-          <li>
-            <a href="/pages/manual"> 📖 Manual </a>
-          </li>
+<body>
 
-          <li>
-            <a href="/pages/brain"> 🧠 Brain </a>
-          </li>
 
-          <li>
-            <a href="/pages/emotion"> ❤️ Emotion </a>
-          </li>
+<header>
 
-          <li>
-            <a href="/pages/focus"> 🎯 Focus </a>
-          </li>
-        </ul>
-      </aside>
+<h1>🧠 JunOS System Monitor</h1>
 
-      <main>
-        <section class="hero">
-          <section>
-            <h2>📊 資料管理</h2>
+<p>
+Personal Brain Operating System
+</p>
 
-            <div class="card">
-              <p>下載你的 JunOS 歷史紀錄</p>
+</header>
 
-              <a href="/records/export">
-                <button>⬇️ 匯出 CSV</button>
-              </a>
-            </div>
-          </section>
 
-          <h2>每日狀態紀錄</h2>
 
-          <p>了解自己的系統狀態，而不是只靠感覺。</p>
-        </section>
+<div class="container">
 
-        <section>
-          <h2>📝 今日輸入</h2>
 
-          <form action="/records/add" method="POST">
-            <div class="card">
-              <label> 😴 睡眠時間 (小時) </label>
+<aside>
 
-              <br />
+<h2>📚 System</h2>
 
-              <input
-                type="number"
-                step="0.1"
-                name="sleep"
-                placeholder="例如 7.5"
-                required
-              />
 
-              <br /><br />
+<ul>
 
-              <label> 🔋 能量評估 (0-100) </label>
+<li>
+<a href="/">🏠 Dashboard</a>
+</li>
 
-              <br />
 
-              <input
-                type="number"
-                name="energy"
-                min="0"
-                max="100"
-                placeholder="今天有多少電量"
-                required
-              />
+<li>
+<a href="/pages/brain">
+🧠 Brain
+</a>
+</li>
 
-              <br /><br />
 
-              <label> 🎯 一日專注度 (0-100) </label>
+<li>
+<a href="/pages/focus">
+🎯 Focus
+</a>
+</li>
 
-              <br />
 
-              <input
-                type="number"
-                name="focus"
-                min="0"
-                max="100"
-                placeholder="今天專注狀態"
-                required
-              />
+<li>
+<a href="/pages/emotion">
+❤️ Emotion
+</a>
+</li>
 
-              <br /><br />
 
-              <label> 😵 壓力程度 (0-100) </label>
+<li>
+<a href="/pages/desire">
+🔥 Desire
+</a>
+</li>
 
-              <br />
 
-              <input
-                type="number"
-                name="stress"
-                min="0"
-                max="100"
-                placeholder="壓力大小"
-                required
-              />
+</ul>
 
-              <br /><br />
 
-              <label> 🧠 內耗事項 </label>
+</aside>
 
-              <br />
 
-              <textarea
-                name="thoughts"
-                rows="5"
-                placeholder="今天讓你消耗最多的事情..."
-              ></textarea>
 
-              <br /><br />
 
-              <button type="submit">保存今日紀錄</button>
-            </div>
-          </form>
-        </section>
 
-        <section>
-          <h2>📈 歷史回顧</h2>
+<main>
 
-          <table>
-            <tr>
-              <th>日期</th>
 
-              <th>睡眠</th>
 
-              <th>能量</th>
+<section class="hero">
 
-              <th>專注</th>
 
-              <th>壓力</th>
+<h2>
+每日系統紀錄
+</h2>
 
-              <th>內耗</th>
-            </tr>
 
-            {% for record in records %}
+<p>
+不是評價自己，而是觀察自己的 Operating System。
+</p>
 
-            <tr>
-              <td>{{ record.date }}</td>
 
-              <td>{{ record.sleep }} 小時</td>
+</section>
 
-              <td>{{ record.energy }}</td>
 
-              <td>{{ record.focus }}</td>
 
-              <td>{{ record.stress }}</td>
 
-              <td>{{ record.thoughts }}</td>
-            </tr>
 
-            {% else %}
+<section>
 
-            <tr>
-              <td colspan="6">目前沒有紀錄</td>
-            </tr>
 
-            {% endfor %}
-          </table>
-        </section>
+<h2>
+📝 今日輸入
+</h2>
 
-        <section>
-          <h2>🧠 JunOS Analysis Rule</h2>
 
-          <div class="grid">
-            <div class="card">
-              <h3>低能量</h3>
 
-              <p>睡眠不足或壓力過高時， 降低任務難度。</p>
-            </div>
+<form action="/records/add" method="POST">
 
-            <div class="card">
-              <h3>高輸出</h3>
 
-              <p>能量充足時， 安排 Coding、研究、訓練。</p>
-            </div>
+<div class="grid">
 
-            <div class="card">
-              <h3>長期觀察</h3>
 
-              <p>資料比感覺更接近真實狀態。</p>
-            </div>
-          </div>
-        </section>
-      </main>
-    </div>
 
-    <footer>JunOS v1.0</footer>
+<div class="card">
 
-    <script src="/static/script.js"></script>
-  </body>
+<h3>
+😴 Sleep
+</h3>
+
+
+<label>
+睡眠時間
+</label>
+
+
+<input 
+type="number"
+step="0.1"
+name="sleep"
+required
+placeholder="7.5">
+
+
+<br>
+
+
+<label>
+睡眠品質 0-100
+</label>
+
+
+<input
+type="number"
+name="sleep_quality"
+min="0"
+max="100"
+required>
+
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+<h3>
+🧠 Brain
+</h3>
+
+
+<label>
+ADHD 啟動難度
+</label>
+
+
+<input
+type="number"
+name="adhd_start"
+min="0"
+max="100">
+
+
+<br>
+
+
+<label>
+注意力穩定度
+</label>
+
+
+<input
+type="number"
+name="focus"
+min="0"
+max="100">
+
+
+<br>
+
+
+<label>
+Flow 狀態
+</label>
+
+
+<input
+type="number"
+name="flow"
+min="0"
+max="100">
+
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+<h3>
+🏃 Body
+</h3>
+
+
+<label>
+身體疲勞
+</label>
+
+
+<input
+type="number"
+name="fatigue"
+min="0"
+max="100">
+
+
+<br>
+
+
+<label>
+訓練品質
+</label>
+
+
+<input
+type="number"
+name="training"
+min="0"
+max="100">
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+<h3>
+🚀 Output
+</h3>
+
+
+<label>
+Coding 分鐘
+</label>
+
+
+<input
+type="number"
+name="coding">
+
+
+<br>
+
+
+<label>
+Study 分鐘
+</label>
+
+
+<input
+type="number"
+name="study">
+
+
+<br>
+
+
+<label>
+創作時間
+</label>
+
+
+<input
+type="number"
+name="creation">
+
+
+</div>
+
+
+
+
+
+<div class="card">
+
+
+<h3>
+❤️ Emotion
+</h3>
+
+
+<label>
+壓力
+</label>
+
+
+<input
+type="number"
+name="stress"
+min="0"
+max="100">
+
+
+
+<br>
+
+
+<label>
+心理雜訊
+</label>
+
+
+<input
+type="number"
+name="noise"
+min="0"
+max="100">
+
+
+<br>
+
+
+<label>
+情緒穩定
+</label>
+
+
+<input
+type="number"
+name="emotion"
+min="0"
+max="100">
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h3>
+🔥 Desire Control
+</h3>
+
+
+<label>
+衝動強度
+</label>
+
+
+<input
+type="number"
+name="urge"
+min="0"
+max="100">
+
+
+
+<br>
+
+
+<label>
+觸發原因
+</label>
+
+
+<select name="trigger">
+
+
+<option>
+疲勞
+</option>
+
+
+<option>
+壓力
+</option>
+
+
+<option>
+孤單
+</option>
+
+
+<option>
+無聊
+</option>
+
+
+<option>
+逃避
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+
+<h3>
+📌 Daily Reflection
+</h3>
+
+
+
+<label>
+今日最大勝利
+</label>
+
+
+<textarea
+name="win"
+rows="3">
+</textarea>
+
+
+
+
+<label>
+今日最大問題
+</label>
+
+
+<textarea
+name="problem"
+rows="3">
+</textarea>
+
+
+
+
+
+<label>
+明日調整
+</label>
+
+
+<textarea
+name="tomorrow"
+rows="3">
+</textarea>
+
+
+
+</div>
+
+
+
+
+
+<button type="submit">
+保存今日紀錄
+</button>
+
+
+
+</form>
+
+
+</section>
+
+
+
+
+
+
+
+
+<section>
+
+
+<h2>
+📈 Historical Data
+</h2>
+
+
+<table>
+
+
+<tr>
+
+<th>
+日期
+</th>
+
+
+<th>
+Sleep
+</th>
+
+
+<th>
+Brain
+</th>
+
+
+<th>
+Output
+</th>
+
+
+<th>
+Emotion
+</th>
+
+
+<th>
+Reflection
+</th>
+
+
+</tr>
+
+
+
+
+{% for record in records %}
+
+
+
+<tr>
+
+
+<td>
+
+{{record.date}}
+
+</td>
+
+
+
+<td>
+
+{{record.sleep.hours}}
+
+</td>
+
+
+
+<td>
+
+Flow:
+{{record.brain.flow}}
+
+<br>
+
+Focus:
+{{record.brain.focus}}
+
+</td>
+
+
+
+
+<td>
+
+Coding:
+{{record.output.coding}}
+
+<br>
+
+Study:
+{{record.output.study}}
+
+</td>
+
+
+
+
+<td>
+
+Stress:
+{{record.emotion.stress}}
+
+</td>
+
+
+
+<td>
+
+{{record.reflection.win}}
+
+</td>
+
+
+</tr>
+
+
+
+
+{% else %}
+
+
+
+<tr>
+
+<td colspan="6">
+
+目前沒有紀錄
+
+</td>
+
+</tr>
+
+
+
+{% endfor %}
+
+
+
+</table>
+
+
+
+</section>
+
+
+
+
+
+<section>
+
+
+<h2>
+⚙️ JunOS Philosophy
+</h2>
+
+
+
+<blockquote>
+
+
+不要問：
+
+「我今天有沒有成功」
+
+
+<br><br>
+
+
+問：
+
+「我的系統今天運作如何？」
+
+
+</blockquote>
+
+
+</section>
+
+
+
+</main>
+
+
+</div>
+
+
+
+
+<footer>
+
+JunOS v2.0
+
+</footer>
+
+
+
+<script src="/static/script.js"></script>
+
+
+</body>
+
 </html>
