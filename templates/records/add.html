@@ -39,8 +39,7 @@
 <h2>新增紀錄</h2>
 
 <p>
-想到什麼就記錄。
-一天可以有多筆。
+想到什麼就記錄，一天可以多筆。
 </p>
 
 </section>
@@ -48,7 +47,11 @@
 
 
 
+
 <form action="/records/add" method="POST">
+
+
+
 
 
 <div class="card">
@@ -95,30 +98,48 @@
 </option>
 
 
+<option value="research">
+🔬 Research
+</option>
+
+
 </select>
 
 
 
-<br><br>
+</div>
 
 
+
+
+
+
+
+<div class="card">
 
 
 <h3>⚡ System State</h3>
 
 
+
 <label>
-睡眠 (hours)
+😴 睡眠 Sleep (hours)
 </label>
+
 
 <br>
 
 
 <input
+
 type="number"
+
 step="0.1"
+
 name="sleep"
-placeholder="7.5"
+
+placeholder="例如 7.5"
+
 >
 
 
@@ -127,21 +148,29 @@ placeholder="7.5"
 
 
 
+
+
 <label>
-能量 Energy 0-100
+🔋 能量 Energy (0-100)
 </label>
+
 
 <br>
 
 
 <input
+
 type="number"
+
 name="energy"
-min="0"
-max="100"
-placeholder="80"
->
 
+min="0"
+
+max="100"
+
+placeholder="例如 80"
+
+>
 
 
 
@@ -149,21 +178,29 @@ placeholder="80"
 
 
 
+
+
 <label>
-專注 Focus 0-100
+🎯 專注 Focus (0-100)
 </label>
+
 
 <br>
 
 
 <input
+
 type="number"
+
 name="focus"
-min="0"
-max="100"
-placeholder="90"
->
 
+min="0"
+
+max="100"
+
+placeholder="例如 90"
+
+>
 
 
 
@@ -171,25 +208,34 @@ placeholder="90"
 
 
 
+
+
 <label>
-壓力 Stress 0-100
+😵 壓力 Stress (0-100)
 </label>
+
 
 <br>
 
 
 <input
-type="number"
-name="stress"
-min="0"
-max="100"
-placeholder="30"
->
 
+type="number"
+
+name="stress"
+
+min="0"
+
+max="100"
+
+placeholder="例如 30"
+
+>
 
 
 
 </div>
+
 
 
 
@@ -214,9 +260,15 @@ placeholder="
 
 例如：
 
-今天寫 PyTorch 進入 flow
-訓練跳高爆發不好
-對未來研究方向有想法
+今天寫 Flask + MongoDB
+進入 coding flow
+
+跳高訓練：
+起跳速度不足
+
+心理：
+發現自己的壓力來源
+
 ">
 
 </textarea>
@@ -224,6 +276,7 @@ placeholder="
 
 
 </div>
+
 
 
 
@@ -238,25 +291,33 @@ placeholder="
 
 
 <label>
-今日完成：
+
+今日完成 Achievement
+
 </label>
+
+
+<br>
+
 
 
 <textarea
 
 name="achievement"
 
-rows="4"
+rows="5"
 
 placeholder="
-完成什麼？
+今天完成：
 
-例如：
-完成 MongoDB 部署
-刷 50 題保險題
+- MongoDB 部署成功
+- 完成研究資料整理
+- 訓練跳高
+
 ">
 
 </textarea>
+
 
 
 
@@ -265,9 +326,16 @@ placeholder="
 
 
 
+
+
 <label>
-問題 / 阻礙：
+
+遇到問題 Problem
+
 </label>
+
+
+<br>
 
 
 
@@ -275,15 +343,15 @@ placeholder="
 
 name="problem"
 
-rows="4"
+rows="5"
 
 placeholder="
-卡在哪？
+今天卡在哪：
 
-例如：
-注意力下降
-睡眠不足
-技術問題
+- 注意力下降
+- Debug 太久
+- 身體疲勞
+
 ">
 
 </textarea>
@@ -309,20 +377,28 @@ placeholder="
 
 name="insight"
 
-rows="4"
+rows="5"
 
 placeholder="
-今天學到什麼？
+今天最大的理解：
 
-新的想法？
-心理觀察？
-技術突破？
+例如：
+
+MongoDB 比 SQLite 更適合非固定資料
+
+或：
+
+壓力不是問題，沒有輸出管道才是問題
+
 ">
 
 </textarea>
 
 
+
 </div>
+
+
 
 
 
@@ -337,7 +413,10 @@ placeholder="
 
 
 
+
 </form>
+
+
 
 
 
@@ -348,6 +427,8 @@ placeholder="
 
 
 
+
+
 <footer>
 
 JunOS v1.0
@@ -355,7 +436,9 @@ JunOS v1.0
 </footer>
 
 
+
 <script src="/static/script.js"></script>
+
 
 
 </body>

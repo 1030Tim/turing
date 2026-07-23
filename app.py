@@ -20,17 +20,13 @@ import csv
 app = Flask(__name__)
 
 
-# MongoDB 初始化
-
 init_db()
 
 
 
-
-
-# =========================
+# =====================
 # 首頁
-# =========================
+# =====================
 
 @app.route("/")
 def index():
@@ -41,13 +37,9 @@ def index():
 
 
 
-
-
-
-# =========================
+# =====================
 # 靜態 pages
-# =========================
-
+# =====================
 
 @app.route("/pages/<page>")
 def pages(page):
@@ -58,9 +50,7 @@ def pages(page):
             f"pages/{page}.html"
         )
 
-    except Exception as e:
-
-        print(e)
+    except:
 
         return "Page Not Found",404
 
@@ -68,13 +58,9 @@ def pages(page):
 
 
 
-
-
-
-# =========================
-# Daily Record Dashboard
-# =========================
-
+# =====================
+# Dashboard
+# =====================
 
 @app.route("/records/dashboard")
 def dashboard():
@@ -83,30 +69,13 @@ def dashboard():
     collection = get_db()
 
 
-
-    # 最近紀錄
-
     records = list(
-
         collection.find()
-
         .sort(
-            [
-                (
-                    "date",
-                    -1
-                ),
-                (
-                    "time",
-                    -1
-                )
-            ]
+            "created_at",
+            -1
         )
-
-        .limit(100)
-
     )
-
 
 
     return render_template(
@@ -118,13 +87,9 @@ def dashboard():
 
 
 
-
-
-
-
-# =========================
-# 新增 Event
-# =========================
+# =====================
+# 新增紀錄
+# =====================
 
 
 @app.route(
@@ -135,217 +100,132 @@ def dashboard():
 def add_record():
 
 
-    collection=get_db()
+    collection = get_db()
 
 
 
-    now=datetime.now()
+    def get_int(name):
+
+        value = request.form.get(name)
+
+        if value == "" or value is None:
+            return None
+
+        return int(value)
 
 
 
-    record={
+    def get_float(name):
+
+        value = request.form.get(name)
+
+        if value == "" or value is None:
+            return None
+
+        return float(value)
 
 
-        # 日期
+
+    record = {
+
 
         "date":
-        now.strftime(
-            "%Y-%m-%d"
-        ),
+
+        datetime.now()
+        .strftime("%Y-%m-%d"),
 
 
 
-        # 時間
+        "created_at":
 
-        "time":
-        now.strftime(
-            "%H:%M"
-        ),
+        datetime.now(),
 
 
 
+        "sleep":
 
-        # 紀錄類型
+        get_float("sleep"),
 
-        "type":
+
+
+        "energy":
+
+        get_int("energy"),
+
+
+
+        "focus":
+
+        get_int("focus"),
+
+
+
+        "stress":
+
+        get_int("stress"),
+
+
+
+        "emotion":
+
         request.form.get(
-            "type",
-            "daily"
+            "emotion"
         ),
 
 
 
+        "brain":
 
-
-        # 身體
-
-        "body":{
-
-
-            "sleep":
-
-            float(
-                request.form.get(
-                    "sleep",
-                    0
-                )
-            ),
-
-
-            "fatigue":
-
-            int(
-                request.form.get(
-                    "fatigue",
-                    0
-                )
-            )
-
-        },
-
-
-
-
-
-
-        # 大腦狀態
-
-        "brain":{
-
-
-            "focus":
-
-            int(
-                request.form.get(
-                    "focus",
-                    0
-                )
-            ),
-
-
+        {
 
             "flow":
 
-            int(
-                request.form.get(
-                    "flow",
-                    0
-                )
+            request.form.get(
+                "flow"
             ),
 
 
+            "thoughts":
 
-            "adhd_start":
-
-            int(
-                request.form.get(
-                    "adhd_start",
-                    0
-                )
+            request.form.get(
+                "thoughts"
             )
 
         },
 
 
 
+        "life":
 
+        {
 
+            "training":
 
-        # 輸出
-
-        "output":{
+            request.form.get(
+                "training"
+            ),
 
 
             "coding":
 
-            int(
-                request.form.get(
-                    "coding",
-                    0
-                )
+            request.form.get(
+                "coding"
             ),
-
-
-
-            "study":
-
-            int(
-                request.form.get(
-                    "study",
-                    0
-                )
-            ),
-
-
-
-            "training":
-
-            int(
-                request.form.get(
-                    "training",
-                    0
-                )
-            ),
-
 
 
             "music":
 
-            int(
-                request.form.get(
-                    "music",
-                    0
-                )
+            request.form.get(
+                "music"
             )
 
         },
 
 
-
-
-
-
-
-        # 情緒
-
-        "emotion":{
-
-
-            "stress":
-
-            int(
-                request.form.get(
-                    "stress",
-                    0
-                )
-            ),
-
-
-
-            "noise":
-
-            int(
-                request.form.get(
-                    "noise",
-                    0
-                )
-            )
-
-        },
-
-
-
-
-
-
-
-        # 文字紀錄
-
-        "note":
+        "reflection":
 
         request.form.get(
-            "note",
-            ""
+            "reflection"
         )
 
 
@@ -368,13 +248,9 @@ def add_record():
 
 
 
-
-
-
-
-# =========================
-# CSV Export
-# =========================
+# =====================
+# CSV
+# =====================
 
 
 @app.route(
@@ -384,16 +260,14 @@ def add_record():
 def export_records():
 
 
-    collection=get_db()
+    collection = get_db()
 
 
-
-    records=collection.find()
+    records = collection.find()
 
 
 
     filename="junos_records.csv"
-
 
 
 
@@ -405,128 +279,81 @@ def export_records():
     ) as f:
 
 
-
-        writer=csv.writer(f)
+        writer = csv.writer(f)
 
 
 
         writer.writerow(
+
             [
-                "日期",
-                "時間",
-                "類型",
-                "睡眠",
-                "疲勞",
-                "專注",
-                "Flow",
-                "Coding",
-                "Study",
-                "Training",
-                "Music",
-                "壓力",
-                "紀錄"
+
+            "日期",
+            "時間",
+            "睡眠",
+            "能量",
+            "專注",
+            "壓力",
+            "情緒",
+            "Flow",
+            "想法",
+            "訓練",
+            "Coding",
+            "音樂",
+            "反思"
+
             ]
+
         )
-
-
 
 
 
         for r in records:
 
 
-
             writer.writerow(
+
                 [
 
-                    r.get(
-                        "date"
-                    ),
+                r.get("date"),
+
+                r.get("created_at"),
 
 
-                    r.get(
-                        "time"
-                    ),
+                r.get("sleep"),
 
 
-
-                    r.get(
-                        "type"
-                    ),
+                r.get("energy"),
 
 
-
-                    r["body"]
-                    .get(
-                        "sleep"
-                    ),
+                r.get("focus"),
 
 
-
-                    r["body"]
-                    .get(
-                        "fatigue"
-                    ),
+                r.get("stress"),
 
 
-
-                    r["brain"]
-                    .get(
-                        "focus"
-                    ),
+                r.get("emotion"),
 
 
-
-                    r["brain"]
-                    .get(
-                        "flow"
-                    ),
+                r.get("brain",{}).get("flow"),
 
 
-
-                    r["output"]
-                    .get(
-                        "coding"
-                    ),
+                r.get("brain",{}).get("thoughts"),
 
 
-
-                    r["output"]
-                    .get(
-                        "study"
-                    ),
+                r.get("life",{}).get("training"),
 
 
-
-                    r["output"]
-                    .get(
-                        "training"
-                    ),
+                r.get("life",{}).get("coding"),
 
 
-
-                    r["output"]
-                    .get(
-                        "music"
-                    ),
+                r.get("life",{}).get("music"),
 
 
-
-                    r["emotion"]
-                    .get(
-                        "stress"
-                    ),
-
-
-
-                    r.get(
-                        "note"
-                    )
+                r.get("reflection")
 
                 ]
+
             )
-
-
 
 
 
@@ -539,13 +366,6 @@ def export_records():
 
 
 
-
-
-
-
-# =========================
-# Run
-# =========================
 
 
 if __name__=="__main__":
