@@ -11,13 +11,15 @@ from database import init_db, get_db
 from datetime import datetime
 
 import csv
-import os
 
 
 app = Flask(__name__)
 
 
-# 初始化資料庫
+# =========================
+# 初始化 MongoDB
+# =========================
+
 init_db()
 
 
@@ -36,9 +38,9 @@ def index():
 
 
 # =========================
-# 靜態心理 pages
+# 靜態 Pages
+# /pages/adhd
 # /pages/desire
-# /pages/emotion
 # =========================
 
 @app.route("/pages/<page>")
@@ -50,12 +52,12 @@ def pages(page):
             f"pages/{page}.html"
         )
 
+
     except Exception as e:
 
         print("PAGE ERROR:", e)
 
         return "Page Not Found", 404
-
 
 
 
@@ -66,28 +68,13 @@ def pages(page):
 @app.route("/records/dashboard")
 def dashboard():
 
-    conn = get_db()
+    collection = get_db()
 
 
-    records = conn.execute(
-        """
-        SELECT
-        id,
-        date,
-        sleep,
-        energy,
-        focus,
-        stress,
-        thoughts
-
-        FROM records
-
-        ORDER BY id DESC
-        """
-    ).fetchall()
-
-
-    conn.close()
+    records = collection.find().sort(
+        "_id",
+        -1
+    )
 
 
     return render_template(
@@ -97,83 +84,70 @@ def dashboard():
 
 
 
-
-
 # =========================
-# 新增紀錄
+# 新增每日紀錄
 # =========================
 
 @app.route(
     "/records/add",
     methods=["POST"]
 )
-
 def add_record():
 
-    conn = get_db()
+    collection = get_db()
 
 
-    conn.execute(
-        """
-        INSERT INTO records
-        (
-        date,
-        sleep,
-        energy,
-        focus,
-        stress,
-        thoughts
+    sleep = request.form.get("sleep")
+
+    energy = request.form.get("energy")
+
+    focus = request.form.get("focus")
+
+    stress = request.form.get("stress")
+
+
+
+    record = {
+
+        "date":
+        datetime.now().strftime("%Y-%m-%d"),
+
+
+        "sleep":
+        float(sleep) if sleep else 0,
+
+
+        "energy":
+        int(energy) if energy else 0,
+
+
+        "focus":
+        int(focus) if focus else 0,
+
+
+        "stress":
+        int(stress) if stress else 0,
+
+
+        "thoughts":
+        request.form.get(
+            "thoughts",
+            ""
         )
 
-        VALUES
-        (?,?,?,?,?,?)
-
-        """,
-
-        (
-
-            datetime.now()
-            .strftime("%Y-%m-%d"),
+    }
 
 
-            request.form.get(
-                "sleep"
-            ),
 
-
-            request.form.get(
-                "energy"
-            ),
-
-
-            request.form.get(
-                "focus"
-            ),
-
-
-            request.form.get(
-                "stress"
-            ),
-
-
-            request.form.get(
-                "thoughts"
-            )
-
-        )
+    collection.insert_one(
+        record
     )
 
-
-    conn.commit()
-
-    conn.close()
 
 
     return redirect(
         "/records/dashboard"
     )
-
-
 
 
 
@@ -184,35 +158,16 @@ def add_record():
 @app.route(
     "/records/export"
 )
-
 def export_records():
 
 
-    conn = get_db()
+    collection = get_db()
 
 
-    records = conn.execute(
-        """
-        SELECT
-
-        date,
-        sleep,
-        energy,
-        focus,
-        stress,
-        thoughts
-
-
-        FROM records
-
-
-        ORDER BY id DESC
-
-        """
-    ).fetchall()
-
-
-    conn.close()
+    records = collection.find().sort(
+        "_id",
+        -1
+    )
 
 
 
@@ -245,9 +200,49 @@ def export_records():
 
 
 
-        writer.writerows(
-            records
-        )
+        for record in records:
+
+
+            writer.writerow(
+                [
+
+                    record.get(
+                        "date",
+                        ""
+                    ),
+
+
+                    record.get(
+                        "sleep",
+                        0
+                    ),
+
+
+                    record.get(
+                        "energy",
+                        0
+                    ),
+
+
+                    record.get(
+                        "focus",
+                        0
+                    ),
+
+
+                    record.get(
+                        "stress",
+                        0
+                    ),
+
+
+                    record.get(
+                        "thoughts",
+                        ""
+                    )
+
+                ]
+            )
 
 
 
@@ -258,16 +253,14 @@ def export_records():
 
 
 
-
-
 # =========================
-# Render 啟動
+# Run Server
 # =========================
 
 if __name__ == "__main__":
 
     app.run(
         host="0.0.0.0",
-        port=5000,
+        port=5001,
         debug=True
     )

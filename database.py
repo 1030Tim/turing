@@ -1,40 +1,36 @@
-import sqlite3
+from pymongo import MongoClient
+from dotenv import load_dotenv
+import os
 
 
-DB_NAME = "junos.db"
+# 讀取 .env
+load_dotenv()
 
 
-def get_db():
-    conn = sqlite3.connect(DB_NAME)
-    conn.row_factory = sqlite3.Row
-    return conn
+# 連線 MongoDB Atlas
+client = MongoClient(
+    os.getenv("MONGO_URI")
+)
+
+
+# 建立 database
+db = client["JunOS"]
+
+
+# 建立 collection
+records = db["records"]
 
 
 
 def init_db():
 
-    conn = get_db()
+    # MongoDB 不需要 CREATE TABLE
+    # 第一次 insert 時會自動建立 collection
 
-    conn.execute("""
-    CREATE TABLE IF NOT EXISTS records(
-
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-
-        date TEXT,
-
-        sleep REAL,
-
-        energy INTEGER,
-
-        focus INTEGER,
-
-        stress INTEGER,
-
-        thoughts TEXT
-
-    )
-    """)
+    return True
 
 
-    conn.commit()
-    conn.close()
+
+def get_db():
+
+    return records

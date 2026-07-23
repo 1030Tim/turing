@@ -1,0 +1,30 @@
+Generate complete Flask app.py
+
+Requirements:
+
+1. Use Flask
+2. Use MongoDB instead of SQLite
+3. Import get_db from database.py
+4. Support dynamic pages route /pages/<page>
+5. Support dashboard route /records/dashboard
+6. Support POST /records/add
+7. Store:
+   date
+   sleep
+   energy
+   focus
+   stress
+   thoughts
+
+8. Support /records/export
+9. Export MongoDB records to CSV
+10. Compatible with Render deployment
+11. Start command:
+    gunicorn app:app
+
+12. Handle missing form values safely
+13. Convert sleep to float
+14. Convert energy/focus/stress to int
+15. Return redirect after insert
+
+Generate production-ready code.
